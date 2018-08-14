@@ -1,0 +1,208 @@
+\documentclass[a4paper, 11pt, openany, oneside, abstract=on]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french, english]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{lmodern}
+\usepackage{marvosym}
+\usepackage{layout}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+
+\title{Rapport de stage de Master 2 (SITIS)}
+\author{Louis BILLIET }
+\date{Août 2018}
+
+\begin{document}
+% \maketitle
+
+\begin{bf}
+Master Sciences, Technologies, Santé
+\\Mention Santé Publique
+
+Parcours
+\\Systèmes d’Information et Technologies Informatiques pour la Santé
+
+Promotion 2017-2018
+
+\setlength{\fboxsep}{4mm}% Commande permettant de définir l'écart
+
+\setlength{\fboxrule}{2mm}% Commande permettant de définir l'épaisseur du trait
+\fbox{\textsc{Scoring de posts de forums pour la détection automatique de mésusages médicamenteux}}
+
+Mémoire réalisé dans le cadre d’une mission effectuée
+\\du 12/02/2018 au 31/10/2018
+
+\bsc{INSERM, BPH, U1219, ISPED, ERIAS}
+\\Université de Bordeaux, 35 place Pey Berland, \bsc{33 000 BORDEAUX, FRANCE}
+
+Maître de stage :
+\\Frantz \bsc{THIESSARD}, MCU-PH, ERIAS
+
+Soutenu publiquement le 18/09/2018
+\\Par « Louis \bsc{BILLIET} »
+
+Jury de soutenance :
+\\Fleur \bsc{MOUGIN, MCU, ERIAS,} tuteur universitaire
+\\Gayo \bsc{DIALLO, MCU, ERIAS}
+\\ x, rapporteur
+\end{bf}
+
+\part*{Remerciements}
+A toute l'équipe du Master, pour leur encadrement \\
+Renaud \bsc{BESSELLERE}\\
+Georgeta \bsc{BORDEA}\\
+Mehdi \bsc{BOUDJELLA}\\
+Sébastien \bsc{COSSIN}\\
+Vincent \bsc{DEROISSART}\\
+Gayo \bsc{DIALLO}\\
+Romain \bsc{GRIFFIER}\\
+Vianney \bsc{JOUHET}\\
+Valérie \bsc{KIEWSKY}\\
+Frédéric \bsc{LALANNE}\\
+Yann \bsc{LAMBERT}\\
+Luc \bsc{LEBRUN}\\
+Fleur \bsc{MOUGIN}\\
+Jean Noël \bsc{NIKIEMA}\\
+Kevin \bsc{OUAZZANI}\\
+Claire \bsc{SMAL}\\
+Bruno \bsc{THIAO-LAYEL}\\
+Frantz \bsc{THIESSARD}\\
+Tous les \bsc{ISP}\\
+
+\part*{Sommaire}
+1Introduction
+1.1Structure d'accueil
+1.2Contexte et justification du projet
+2Méthodes
+3Résultats
+4Discussion
+4.1Littérature connue
+4.2Limites du projet
+5Conclusion
+5.1Confrontation solution finale VS hypothèses de départ
+5.2Cohérence du projet dans le cadre de perspectives professionnelles
+
+\section*{Liste des abréviations, acronymes}
+\begin{description}
+\item[ANSM -] Agence Nationale de Sécurité du Médicament et des produits de santé
+\item[CHU –] Centre Hospitalier Universitaire
+\item[CIM-10 –] Classification Internationale des Maladies 10ème révision
+\item[Classification ATC –] Classification Anatomique, Thérapeutique et Chimique
+\item[DoMINO –] \begin{it}Drugs Misuse In NetwOrks\end{it}
+\item[DRUGS-SAFE –] \begin{it}DRUGS Systematized Assessment in real-liFe Environment\end{it}
+\item[ERIAS –] Équipe de Recherche en Informatique Appliquée à la Santé
+\item[ICD-10 –] \begin{it}International Classification of Diseases 10th revision\end{it}
+\item[INSERM –] Institut National de la Santé et de la Recherche Médicale
+\item[IDF –] \begin{it}Inverse Document Frequency\end{it}
+\item[MeSH –] \begin{it}Medical Subject Headings\end{it}
+\item[RCP –] Résumé des Caractéristiques du Produit
+\item[RGPD -] Règlement Général sur la Protection des Données
+\item[SITIS -] Systèmes d’Information et Technologies Informatiques pour la Santé
+\item[TAL –] Traitement Automatique de Langage
+\item[TF –] \begin{it}Term frequency\end{it}
+\item[UMLS –] \begin{it}Unified Medical Language System\end{it}
+\end{description}
+
+\chapter{Introduction}
+\begin{it}Annonce le plan et faisant référence seulement aux grandes parties.\end{it}
+1.1 Structure d'accueil
+Le projet Drugs Misuse In NetwOrks (DoMINO) est porté par l'Équipe de Recherche en Informatique Appliquée à la Santé (ERIAS), rattachée à l'U1219 de l'Institut National de la Santé et de la Recherche Médicale (INSERM) de Bordeaux. Cette équipe de recherche est composée de chercheurs issus de formations différentes, et est notamment l'équipe en charge de l'encadrement et de l'enseignement du Master 2 parcours Systèmes d’Information et Technologies Informatiques pour la Santé (SITIS) [1]. Une des thématiques de recherche récurrente, sur les différents projets à charge, est la transformation de données depuis une ou plusieurs sources de données, vers une source de données de haut niveau, que ce soit en terme sémantique, ou structurel [2]. 
+Le stage de master aura porté sur une partie du projet DoMINO, à savoir l'élaboration et l'évaluation d'un processus de traitement de données, issues de forums publics à thématique de santé, pour l'émergence de signaux de suspicion de mésusage médicamenteux.
+1.2 Contexte et justification du projet
+\begin{it}Cadrer et définir le sujet d’un pt de vue sectoriel, historique, réglementaire et scientifique.
+⇒ insérer textes de lois dans annexes
+Présenter le contexte de la mission en citant des documents publiés et en indiquant les données nécessaires à la compréhension du cadre de votre travail.
+Justifier et argumenter de l’intérêt de cette mission, et aboutir sur la définition précise de l’objectif de votre travail.\end{it}
+Le projet DoMINO prend place dans le cadre d'un appel à projet de l'Agence Nationale de Sécurité du Médicament et des produits de santé (ANSM). Celui-ci a été émis en 2016, dans le cadre d'appel à candidature pour des études sur thématiques ciblées dans le domaine des produits de santé [3].
+1.2.1 Définitions
+1.2.2 Plateforme DRUGS-SAFE
+1.2.3 Appel à projet ANSM
+Réponse appel à projet ANSM
+Justifier la confiance du demandeur envers l’équipe de recherche
+Pérenniser les échanges avec l’ANSM
+Enrichissement plateforme jeune de pharmacovigilance
+1.2.4 Projets précédents et cooccurrents
+1.2.5 Enjeux
+Enjeux de santé publique ⇒ lutte contre le mésusage médicamenteux, prévention primo-secondaire avec potentielles mise en place d’interventions en population ciblée.
+Enjeux apport méthodologique traitement de données non structurées de posts de forums publics
+Enjeux de création d’un outil visant à l’amélioration des systèmes de veille pharmacologique, notamment en terme de réactivité / délai
+1.3 Temporalité du projet
+1.4 Briques du projet
+1.5 Articulation du projet avec le Master 2 Parcours SITIS
+Data management
+Thématique de recherche faisant appel tant aux compétences en sciences de l’informations, qu’en sciences de la santé.
+approche pluridisciplinaire
+nécessité collaboration étroite avec profils spécialisés au niveau informatique et en santé
+mise en commun outils et compétences spécifiques de chacun
+multiples aspects techniques au niveau informatique abordés
+mise en oeuvre de nombreux outils et technologies spécifiques pour mener à bien le projet et garantir une qualité suffisante (notamment en terme de qualité des données) de la solution envisagée
+ontologie sous-tendue dans base NoSQL
+base de données relationnelle pour stocker les résultats nécessaire à la présentation des résultats attendus dans l’interface utilisateur
+test utilisateur en lien avec l’équipe de pharmacovigilance, pour répondre au mieux aux attentes des utilisateurs
+outil de visualisation innovant
+interface de navigation pensée pour améliorer autant que faire se peut l’expérience utilisateur, avec souci permanent de la pertinence des informations présentées à l’utilisateur
+mise en place de flux de traitements des données pour être en accord avec la nouvelle réglementation issue du RGPD 2018
+
+\chapter{Méthodes}
+2.1 Calcul de métriques
+Métriques = indicateur reflétant le degré de suspicion de mésusage lié à un médicament.
+Un indicateur par type de mésusage suspecté / traité
+2.1.1 Méthodologies statistiques envisagées
+2.1.2 Méthodologies statistiques retenues
+Présenter la méthode de travail élaborée et mise en œuvre pour répondre à la question de la mission.
+Il est essentiel que le cheminement qui guide la résolution de votre problématique soit explicite.
+
+3 Résultats
+Présenter de manière rigoureuse les résultats issus de votre travail, en respectant les règles de présentations. Vous veillerez à ne pas introduire des éléments de discussion dans les résultats.
+4 Discussion
+Discuter et commenter les résultats de votre mission en les confrontant aux données connues et publiées. La discussion exposent aussi les limites de votre travail, les questions restant en suspens, des points critiques et ouvrent sur des axes d’amélioration, des perspectives.
+4.1 Littérature connue
+4.2 Limites du projet
+Exposer les limites + critiques.
+4.3 Difficultés rencontrées
+
+5 Conclusion
+Répond à la problématique et aux hypothèses de travail de manière synthétique, en validant ou non les hypothèses de départ, en fonction de votre argumentation.
+Il est important de faire allusion à l'apport personnel de la mission dans le cadre de la construction de votre projet professionnel.
+5.1 Confrontation solution finale VS hypothèses de départ
+5.2 Cohérence du projet dans le cadre de perspectives professionnelles
+
+\part*{Bibliographie}
+
+\part*{Annexes}
+
+\part*{Autorisation d'utilisation du mémoire de stage (complétée et signée)}
+
+\addto{\captionsfrench}{\renewcommand{\abstractname}{Résumé}}
+\selectlanguage{french}
+\begin{abstract}
+    %10aine de lignes de résumé du mémoire
+    \section*{Mots-clés (MeSH) :}
+    \begin{description}
+    \item[Mauvais usage des médicaments prescrits] D062787 / E02.319.754.500\\
+    \item[Algorithmes] D000465 / G17.035\\
+    \item[Traitement du langage naturel] D009323 / L01.224.050.375.580\\
+    \item[Surveillance post-commercialisation des produits de santé] D011358 / E05.337.800\\
+    \end{description}
+\end{abstract}
+
+\addto{\captionsenglish}{\renewcommand{\abstractname}{Abstract}}
+\selectlanguage{english}
+\begin{abstract}
+    %from 10 to 15 lines to sum up the report
+    \section*{Keywords (MeSH) :}
+    \begin{description}
+    \item[Prescription Drug Misuse] D063487 / E02.319.306.500\\
+    \item[Algorithms] D000465 / G17.035\\
+    \item[Natural Language Processing] D009323 / L01.224.050.375.580\\
+    \item[Product Surveillance / Postmarketing] D011358 / E05.337.800\\
+    \end{description}
+\end{abstract}
+
+\end{document}
