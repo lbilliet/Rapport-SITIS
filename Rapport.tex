@@ -1,99 +1,145 @@
-\documentclass[a4paper, 11pt, openany, oneside, abstract=on]{report}
+\documentclass[a4paper, 12pt, openany, oneside, abstract=on]{article} % Louis
 \usepackage[utf8]{inputenc}
+% \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french, english]{babel}
-\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[toc,page]{appendix}
+\usepackage{pdfpages}
+\usepackage{titlesec}
+\usepackage{float}
 \usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{marvosym}
 \usepackage{layout}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{float}
+\usepackage{booktabs}
 \usepackage{makeidx}
-\usepackage{url}
 \usepackage{fancyhdr}
 \usepackage{setspace}
+\usepackage[colorinlistoftodos]{todonotes}
+% \newcommand\tab[1][0.6cm]{\hspace*{#1}}
+% \setcounter{secnumdepth}{4}
+% \titleformat{\paragraph}
+% {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+% \titlespacing*{\paragraph}
+% {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, marginparwidth=1.75cm]{geometry}
+\usepackage[letterspace=50]{microtype}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+\usepackage[autostyle]{csquotes}
+% \usepackage[colorlinks=true, linktocpage=true, url=blue, linkcolor = blue]{hyperref}
+\usepackage[colorlinks=true, linktocpage=true, allcolors=blue]{hyperref} %original
+\onehalfspacing
+\setstretch {1.2}
 
-\title{Rapport de stage de Master 2 (SITIS)}
-\author{Louis BILLIET }
-\date{Août 2018}
+\title{SCORING DE POSTS POUR LA DÉTECTION AUTOMATIQUE DE MÉSUSAGES MÉDICAMENTEUX À PARTIR DE FORUMS PUBLICS}
+\author{Louis \textsc{BILLIET}}
+\date\today
 
 \begin{document}
-% \maketitle
+\selectlanguage{french}
+\newcommand{\comment}[1]{}
+\pagestyle{empty} % à désactiver pour commencer la numérotation
 
-\begin{bf}
-Master Sciences, Technologies, Santé
-\\Mention Santé Publique
+\includepdf[pages=1]{img/PageDeGarde.pdf}
 
-Parcours
-\\Systèmes d’Information et Technologies Informatiques pour la Santé
+% \begin{titlepage}
+% \begin{bf}
+% \begin{center}
+% Master Sciences, Technologies, Santé\\
+% Mention Santé Publique\\
 
-Promotion 2017-2018
+% Parcours\\
+% Systèmes d’Information et Technologies Informatiques pour la Santé\\
 
-\setlength{\fboxsep}{4mm}% Commande permettant de définir l'écart
+% Promotion 2017-2018\\
 
-\setlength{\fboxrule}{2mm}% Commande permettant de définir l'épaisseur du trait
-\fbox{\textsc{Scoring de posts de forums pour la détection automatique de mésusages médicamenteux}}
+% % \setlength{\fboxsep}{4mm}% Commande permettant de définir l'écart
+% % \setlength{\fboxrule}{2mm}% Commande permettant de définir l'épaisseur du trait
+% % \fbox{
+% % \begin{minipage}
+% % \textsc{Scoring de posts de forums publics pour la production automatique de signaux de mésusage médicamenteux}
+% % \end{minipage}
+% % }
 
-Mémoire réalisé dans le cadre d’une mission effectuée
-\\du 12/02/2018 au 31/10/2018
+% \setbox0=\hbox\bgroup %creation of a box
+% \begin{minipage}{\textwidth}
+% \begin{center}
+% \textsc{Scoring de posts de forums publics pour la production automatique de signaux de mésusage médicamenteux}    
+% \end{center}
+% \end{minipage}
+% \egroup
+% \fbox{\box0}
 
-\bsc{INSERM, BPH, U1219, ISPED, ERIAS}
-\\Université de Bordeaux, 35 place Pey Berland, \bsc{33 000 BORDEAUX, FRANCE}
+% Mémoire réalisé dans le cadre d’une mission effectuée\\
+% du 12/02/2018 au 31/10/2018\\
 
-Maître de stage :
-\\Frantz \bsc{THIESSARD}, MCU-PH, ERIAS
+% \bsc{INSERM, BPH, U1219, ISPED, ERIAS}\\
+% Université de Bordeaux\\
+% 35 place Pey Berland, \bsc{33 000 BORDEAUX, FRANCE}\\
 
-Soutenu publiquement le 18/09/2018
-\\Par « Louis \bsc{BILLIET} »
+% Maîtres de stage :\\
+% Gayo \bsc{DIALLO, MCU, ERIAS}\\
+% Frantz \bsc{THIESSARD}, MCU-PH, ERIAS\\
 
-Jury de soutenance :
-\\Fleur \bsc{MOUGIN, MCU, ERIAS,} tuteur universitaire
-\\Gayo \bsc{DIALLO, MCU, ERIAS}
-\\ x, rapporteur
-\end{bf}
+% Soutenu publiquement le 18/09/2018\\
+% Par Louis \bsc{BILLIET}\\
+% \end{center}
 
+% Jury de soutenance :\\
+% Vianney \bsc{JOUHET, PH, ERIAS}, rapporteur\\
+% Valérie \bsc{KIEWSKY, MCU, ERIAS}\\
+% Fleur \bsc{MOUGIN, MCU, ERIAS,} tuteur universitaire\\
+% \end{bf}
+%  \end{titlepage}
+
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newpage
 \part*{Remerciements}
-A toute l'équipe du Master, pour leur encadrement \\
-Renaud \bsc{BESSELLERE}\\
-Georgeta \bsc{BORDEA}\\
-Mehdi \bsc{BOUDJELLA}\\
-Sébastien \bsc{COSSIN}\\
-Vincent \bsc{DEROISSART}\\
-Gayo \bsc{DIALLO}\\
-Romain \bsc{GRIFFIER}\\
-Vianney \bsc{JOUHET}\\
-Valérie \bsc{KIEWSKY}\\
-Frédéric \bsc{LALANNE}\\
-Yann \bsc{LAMBERT}\\
-Luc \bsc{LEBRUN}\\
-Fleur \bsc{MOUGIN}\\
-Jean Noël \bsc{NIKIEMA}\\
-Kevin \bsc{OUAZZANI}\\
-Claire \bsc{SMAL}\\
-Bruno \bsc{THIAO-LAYEL}\\
-Frantz \bsc{THIESSARD}\\
-Tous les \bsc{ISP}\\
+\textsc{à} \textbf{toute l'équipe du Master}, pour leur encadrement et leur disponibilité.\\
+\textsc{à} \textbf{toute l'équipe ERIAS}, pour leur accompagnment tout au long de la complexité de ce projet.\\
+\textsc{à} \textbf{toute la promotion 2017-2018 du Master SITIS}, pour la cohésion face aux itérations rapprochées de dates butoir des rendus de projet, sans quoi la partie enseignement aurait été beaucoup moins stimulante.\\
+\textsc{à} \textbf{toute l'équipe en charge du projet DoMINO}, qui aura su éclairer mes lanternes lorsque je me perdais dans de sombres points de détails du projet, sans même forcément s'en rendre compte.\\
+\textsc{à} \textbf{Mehdi \bsc{BOUDJELLA} et Vincent \bsc{DEROISSART}} pour avoir fait preuve de soutien au travail en fin de première année, afin je puisse commencer cette formation. Et pour l'ambiance de travail de ce fameux semestre avec \textbf{Romain \bsc{GRIFFIER}} !\\
+\textsc{à} \textbf{Sébastien \bsc{COSSIN} et Vianney \bsc{JOUHET}} pour leur accompagnement tant sur le plan des nouvelles connaissances engrangées en informatique, que quand il s'agissait d'aller partager une virée surf au lever du soleil pour bien commencer la journée de travail.\\
+\textsc{à} \textbf{Vincent \bsc{DEROISSART}, Romain \bsc{GRIFFIER} et Yann \bsc{LAMBERT}} pour leur aide précieuse lorsque je n'arrivais pas à entrevoir la lumière au sein d'un code me paraissant beaucoup trop obscur.\\
+\textsc{à} \textbf{Frantz \bsc{THIESSARD}} qui aura su m'accorder sa confiance dès notre première rencontre, et ainsi incité à m'engager dans une voie que je pressens riche, pour l'avenir, tant sur le plan collectif qu'individuel.\\
+Enfin \textbf{tous les ISP}, pour enrichir chaque jour un peu plus mon expérience de la santé publique (et autres), au travers d'échanges parfois inattendus.\\
+Et aux \textbf{divers professionnels de santé publique rencontrés au fil de mes stages} en tant qu'interne, pour avoir su me montrer que cette filière est pleine de surprises.\\
 
-\part*{Sommaire}
-1Introduction
-1.1Structure d'accueil
-1.2Contexte et justification du projet
-2Méthodes
-3Résultats
-4Discussion
-4.1Littérature connue
-4.2Limites du projet
-5Conclusion
-5.1Confrontation solution finale VS hypothèses de départ
-5.2Cohérence du projet dans le cadre de perspectives professionnelles
+\begin{center}
+    \emph{Enfin, à toutes les personnes qui ont déjà, et viendront encore, chaque fois un peu plus me faire découvrir que cette vie est à vivre passionnément.}
+\end{center}
 
-\section*{Liste des abréviations, acronymes}
+\newpage
+\renewcommand{\contentsname}{Sommaire}
+\setcounter{tocdepth}{4}
+
+\newpage
+\tableofcontents
+
+\newpage
+\listoffigures
+
+\newpage
+\listoftables
+
+\newpage
+\part*{Liste des abréviations, acronymes}
 \begin{description}
+ \item[AMM -] Autorisation de Mise sur le Marché
 \item[ANSM -] Agence Nationale de Sécurité du Médicament et des produits de santé
+\item[BPH –] \begin{it}Bordeaux Population Health\end{it}
 \item[CHU –] Centre Hospitalier Universitaire
-\item[CIM-10 –] Classification Internationale des Maladies 10ème révision
+\item[CIM10 –] Classification Internationale des Maladies 10ème révision
 \item[Classification ATC –] Classification Anatomique, Thérapeutique et Chimique
+\item[DCI -] Dénomination Commune Internationale
 \item[DoMINO –] \begin{it}Drugs Misuse In NetwOrks\end{it}
 \item[DRUGS-SAFE –] \begin{it}DRUGS Systematized Assessment in real-liFe Environment\end{it}
 \item[ERIAS –] Équipe de Recherche en Informatique Appliquée à la Santé
@@ -101,89 +147,732 @@ Tous les \bsc{ISP}\\
 \item[INSERM –] Institut National de la Santé et de la Recherche Médicale
 \item[IDF –] \begin{it}Inverse Document Frequency\end{it}
 \item[MeSH –] \begin{it}Medical Subject Headings\end{it}
+\item[OMS –] Organisation Mondiale de la Santé
 \item[RCP –] Résumé des Caractéristiques du Produit
 \item[RGPD -] Règlement Général sur la Protection des Données
+\item[SGBD -] Système de Gestion de Base de Données 
 \item[SITIS -] Systèmes d’Information et Technologies Informatiques pour la Santé
 \item[TAL –] Traitement Automatique de Langage
 \item[TF –] \begin{it}Term frequency\end{it}
 \item[UMLS –] \begin{it}Unified Medical Language System\end{it}
 \end{description}
 
-\chapter{Introduction}
-\begin{it}Annonce le plan et faisant référence seulement aux grandes parties.\end{it}
-1.1 Structure d'accueil
-Le projet Drugs Misuse In NetwOrks (DoMINO) est porté par l'Équipe de Recherche en Informatique Appliquée à la Santé (ERIAS), rattachée à l'U1219 de l'Institut National de la Santé et de la Recherche Médicale (INSERM) de Bordeaux. Cette équipe de recherche est composée de chercheurs issus de formations différentes, et est notamment l'équipe en charge de l'encadrement et de l'enseignement du Master 2 parcours Systèmes d’Information et Technologies Informatiques pour la Santé (SITIS) [1]. Une des thématiques de recherche récurrente, sur les différents projets à charge, est la transformation de données depuis une ou plusieurs sources de données, vers une source de données de haut niveau, que ce soit en terme sémantique, ou structurel [2]. 
-Le stage de master aura porté sur une partie du projet DoMINO, à savoir l'élaboration et l'évaluation d'un processus de traitement de données, issues de forums publics à thématique de santé, pour l'émergence de signaux de suspicion de mésusage médicamenteux.
-1.2 Contexte et justification du projet
-\begin{it}Cadrer et définir le sujet d’un pt de vue sectoriel, historique, réglementaire et scientifique.
-⇒ insérer textes de lois dans annexes
-Présenter le contexte de la mission en citant des documents publiés et en indiquant les données nécessaires à la compréhension du cadre de votre travail.
-Justifier et argumenter de l’intérêt de cette mission, et aboutir sur la définition précise de l’objectif de votre travail.\end{it}
-Le projet DoMINO prend place dans le cadre d'un appel à projet de l'Agence Nationale de Sécurité du Médicament et des produits de santé (ANSM). Celui-ci a été émis en 2016, dans le cadre d'appel à candidature pour des études sur thématiques ciblées dans le domaine des produits de santé [3].
-1.2.1 Définitions
-1.2.2 Plateforme DRUGS-SAFE
-1.2.3 Appel à projet ANSM
-Réponse appel à projet ANSM
-Justifier la confiance du demandeur envers l’équipe de recherche
-Pérenniser les échanges avec l’ANSM
-Enrichissement plateforme jeune de pharmacovigilance
-1.2.4 Projets précédents et cooccurrents
-1.2.5 Enjeux
-Enjeux de santé publique ⇒ lutte contre le mésusage médicamenteux, prévention primo-secondaire avec potentielles mise en place d’interventions en population ciblée.
-Enjeux apport méthodologique traitement de données non structurées de posts de forums publics
-Enjeux de création d’un outil visant à l’amélioration des systèmes de veille pharmacologique, notamment en terme de réactivité / délai
-1.3 Temporalité du projet
-1.4 Briques du projet
-1.5 Articulation du projet avec le Master 2 Parcours SITIS
-Data management
-Thématique de recherche faisant appel tant aux compétences en sciences de l’informations, qu’en sciences de la santé.
-approche pluridisciplinaire
-nécessité collaboration étroite avec profils spécialisés au niveau informatique et en santé
-mise en commun outils et compétences spécifiques de chacun
-multiples aspects techniques au niveau informatique abordés
-mise en oeuvre de nombreux outils et technologies spécifiques pour mener à bien le projet et garantir une qualité suffisante (notamment en terme de qualité des données) de la solution envisagée
-ontologie sous-tendue dans base NoSQL
-base de données relationnelle pour stocker les résultats nécessaire à la présentation des résultats attendus dans l’interface utilisateur
-test utilisateur en lien avec l’équipe de pharmacovigilance, pour répondre au mieux aux attentes des utilisateurs
-outil de visualisation innovant
-interface de navigation pensée pour améliorer autant que faire se peut l’expérience utilisateur, avec souci permanent de la pertinence des informations présentées à l’utilisateur
-mise en place de flux de traitements des données pour être en accord avec la nouvelle réglementation issue du RGPD 2018
+\lsstyle
+\newpage
+\pagestyle{fancy}
+% \pagestyle{plain}
+\setcounter{page}{1}
+\section{Introduction}
 
-\chapter{Méthodes}
-2.1 Calcul de métriques
-Métriques = indicateur reflétant le degré de suspicion de mésusage lié à un médicament.
-Un indicateur par type de mésusage suspecté / traité
-2.1.1 Méthodologies statistiques envisagées
-2.1.2 Méthodologies statistiques retenues
-Présenter la méthode de travail élaborée et mise en œuvre pour répondre à la question de la mission.
-Il est essentiel que le cheminement qui guide la résolution de votre problématique soit explicite.
+\subsection{Structure d'accueil}
+Le projet Drugs Misuse In NetwOrks (DoMINO) est porté par l'Équipe de Recherche en Informatique Appliquée à la Santé (ERIAS), rattachée à l'U1219 de l'Institut National de la Santé et de la Recherche Médicale (INSERM) de Bordeaux. Cette équipe de recherche est composée de chercheurs issus de formations différentes, et est notamment l'équipe en charge de l'encadrement et de l'enseignement du Master 2 parcours Systèmes d’Information et Technologies Informatiques pour la Santé (SITIS)\cite{ISPED}.
 
-3 Résultats
-Présenter de manière rigoureuse les résultats issus de votre travail, en respectant les règles de présentations. Vous veillerez à ne pas introduire des éléments de discussion dans les résultats.
-4 Discussion
-Discuter et commenter les résultats de votre mission en les confrontant aux données connues et publiées. La discussion exposent aussi les limites de votre travail, les questions restant en suspens, des points critiques et ouvrent sur des axes d’amélioration, des perspectives.
-4.1 Littérature connue
-4.2 Limites du projet
-Exposer les limites + critiques.
-4.3 Difficultés rencontrées
+Un des champs de compétences mis en oeuvre de façon récurrente au travers des projets de recherche de cette équipe, est la transformation de données à partir de sources hétérogènes de plus ou moins haut niveau. Ceci se fait au travers de processus d'intégration sémantique et/ou syntaxique, ainsi que de modélisation des données\cite{BPHU1219}.
 
-5 Conclusion
-Répond à la problématique et aux hypothèses de travail de manière synthétique, en validant ou non les hypothèses de départ, en fonction de votre argumentation.
-Il est important de faire allusion à l'apport personnel de la mission dans le cadre de la construction de votre projet professionnel.
-5.1 Confrontation solution finale VS hypothèses de départ
-5.2 Cohérence du projet dans le cadre de perspectives professionnelles
+\subsection{Contexte et justification du projet}
+Le stage de master aura porté sur une partie du projet DoMINO, à savoir : l'élaboration et l'évaluation d'un processus de traitement de données, issues de forums publics à thématique de santé, pour l'émergence de signaux de suspicion de mésusage médicamenteux\cite{DRUGS-SAFE}.\\
 
-\part*{Bibliographie}
+\subsubsection{Définitions}
+Le projet DoMINO porte sur la production de signaux de mésusage médicamenteux, dont des définitions sont données par, respectivement l'article R5121-152 du code de la santé publique (CSP) \ref{app:CSP5121}\cite{LegiFrance} et le glossaire des vigilances de l'ANSM\cite{France2007}, comme suit :
 
-\part*{Annexes}
+\begin{description}
+    \item[Mésusage médicamenteux (CSP)-] utilisation intentionnelle et inappropriée d'un médicament ou d'un produit, non conforme à l'autorisation de mise sur le marché ou à l'enregistrement ainsi qu'aux recommandations de bonnes pratiques.
+    \item[Mésusage médicamenteux (ANSM)-] utilisation non conforme aux conditions d’utilisation recommandées du produit de santé.
+\end{description}
+En revanche, le projet ne porte pas sur la production de signaux concernant de façon directe les effets indésirables médicamenteux. Il faut donc bien distinguer les concepts de mésusage, défini ci-dessus, et d'effet indésirable, tel que défini ci-après.
+\begin{description}
+    \item[Effet indésirable (CSP)-] réaction nocive et non voulue à un médicament ou à un produit.
+    \item[Effet indésirable (ANSM)-] réaction nocive et non recherchée survenant chez l’Homme, susceptible d’être liée à l’utilisation d’un produit de santé dans les conditions normales d’emploi ou lors d’un mésusage.
+\end{description}
 
-\part*{Autorisation d'utilisation du mémoire de stage (complétée et signée)}
+\subsubsection{Plateforme DRUGS-SAFE}
+La plateforme DRUGS-SAFE est une plateforme de recherche financée par l'ANSM : celle-ci vise à produire un système avec plusieurs outils intégrés, permettant une activité de monitoring du médicament, tant sur le plan des usages des médicaments et produits de santé, que sur celui de la sécurité liée à ces derniers.
+Cette plateforme, coordonnée par le Pr Antoine \bsc{PARIENTE}, se compose de six équipes de recherches, dont cinq rattachées au centre de recherche Bordeaux Population Health (BPH), parmi lesquelles figure l'équipe ERIAS.
+Celle-ci a été pensée comme un outil à visée épidémiologique des produits de santé, indépendant de l'industrie, en réalisant des études à partir de bases de données riches, ainsi qu'à partir de cohortes à grande échelle\cite{ANSM2014}. Son but est d'évaluer l'utilisation du médicament en population générale, ou spécifique, afin de pouvoir guider les prises de décisions, et actions qui en découlent, de la part de l'ANSM, pour améliorer l'usage du médicament\cite{DRUGS-SAFEa}.
 
+\subsubsection{Appel à projet ANSM}
+\label{appelProjet}
+Le projet DoMINO prend place dans le cadre d'un appel à projet de l'Agence Nationale de Sécurité du Médicament et des produits de santé (ANSM), intitulé \emph{Validation d’un outil de détection de signaux de pharmacovigilance et de mésusage des médicaments issus des réseaux sociaux et internet}. Celui-ci a été émis en 2016, dans le cadre d'appel à candidature pour des études sur thématiques ciblées dans le domaine des produits de santé\cite{ANSM}.
+
+Une réponse à cet appel à projet a été formulée via l'équipe en charge de DRUGS-SAFE, dans les suites logiques de précédentes thématiques de recherche proches. L'équipe en charge de la conception et du développement de la solution logicielle permettant de présenter les signaux d'intérêt dans le cadre du projet DoMINO est l'équipe de recherche ERIAS.
+
+\subsubsection{Projets précédents et cooccurrents}
+Parmi les sujets de recherche précédents de l'équipe en charge de DRUGS-SAFE, certains portaient sur des thématiques proches. Entre autre, le projet DRUGS-2M avait pour but la génération de signaux de mésusage médicamenteux à partir des données de remboursement, dans le cadre d'une activité de pharmacovigilance\cite{Le2011}.
+Le projet DoMINO se place donc dans sa continuité, avec cette volonté de développement d'outils innovants, permettant d'enrichir la pratique des centres de pharmacovigilance. 
+La différence majeure réside dans la nature des informations qui alimente la solution envisagée, ces informations étant par nature hétérogènes, selon les sources, et qui plus est, non structurée (ou de manière presque négligeable).
+
+C'est en s'appuyant sur les spécificités des réseaux sociaux qu'aux USA, \emph{Cameron et al.} sont parvenus à créer une plateforme de web sémantique, servant de support pour l'épidémiologie des consommations réelles de médicaments \cite{Cameron2013}.
+Par ailleurs, le projet Vigi4Med est un projet ayant porté sur la production de signaux d'effets indésirables, à partir de données issus de forums publics, à thématique de santé\cite{C.Bousquet2014}. Ici, le parallèle entre le projet Vigi4Med et le projet DoMINO peut se faire sur la nature et la provenance des données d'entrée. Celles-ci sont extraites depuis les mêmes sources, à savoir, les forums publics à thématique de santé. La différence réside cette fois dans l'objet du signal à produire par la solution envisagée.
+
+\subsubsection{Enjeux}
+Comme l'évoque explicitement l'appel à projet émis par l'ANSM, les enjeux de ce projet sont multiples.
+
+L'enjeu principal de ce projet appartient au champ de la santé publique. La volonté première est une amélioration de performance des centres de pharmacovigilance, concernant leur activité de veille sanitaire, ici spécifiquement orientée sur le mésusage médicamenteux. Si l'outil envisagé à cette fin s'avère répondre à cette demande, il semble licite de penser que des interventions en population générale pourront être envisagées par la suite, à la lumière des signaux générés. Le projet se place donc dans une logique de prévention primo-secondaire vis-à-vis de la bonne utilisation des traitements médicamenteux. De manière plus concrète, d'après une revue systématique de la littérature, il semblerait que, renforcer l'efficacité des interventions visant une meilleure observance, aurait un bien meilleur impact sur la santé des populations, que n'importe quel progrès pour un traitement médical donné\cite{Haynes2002}. Or, il existe un lien entre l'inobservance à un traitement et son mésusage : le mésusage médicamenteux est une des voies d'entrée possible dans l'inobservance d'un traitement. Ce lien aura même servi de support pour plusieurs thèse de médecine portant sur le mésusage\cite{Marton2016,Henriet2016}.
+
+Les signaux générés par l'intermédiaire de l'outil envisagé pourront alors assister les professionnels dans leurs choix comme mettre en place des actions de prévention pour une classe de thérapeutiques donnée ou des interventions auprès d'une population d'usagers spécifiques, etc.
+
+Le fait de centrer les efforts du projet spécifiquement sur le mésusage médicamenteux émane lui aussi d'un constat de santé publique : d'une manière générale, l'observance quant aux traitements médicamenteux est bien en deçà de ce qu'il semble raisonnablement souhaitable. D'après l'Organisation Mondiale de la Santé (OMS), cette observance concernant les traitements au long cours avoisine les 50\% de moyenne, tous pays confondus\cite{WorldHealthOrganizationWHO2015}. Le mésusage médicamenteux est une des voies possibles qui aboutit in fine à la non-observance d'un traitement. Celui-ci est largement sous-évalué\cite{Huang2014,Margraff2014}, notamment par l'intermédiaire des voies de déclaration usuelles, à savoir la notification spontanée\cite{Faillie2016}.\label{signalisation}
+
+Le but premier est ici d'aboutir à la production de signaux de mésusage médicamenteux, et ce, dans le but de proposer de nouveaux outils aux acteurs de la pharmacovigilance, utilisables en routine. Cette volonté émane de l'apparition de nouvelles sources de données en accès libre depuis le web, pouvant constituer une source d'information complémentaire à celles représentées par les circuits de notifications. Celles-ci, dans le cadre d'activité de veille en santé, sont perçues comme de potentielles nouvelles sources d'informations\cite{RavoireSophie2017,Sarker2015,Charles-Smith2015}. Cette approche a par exemple déjà été utilisée et jugée comme pertinente, pour collecter des informations sur la non-observance, et ce de manière plus exhaustive que via les voies de collecte d'informations historiques\cite{Xie2017,Iniacio2017}. Un intérêt complémentaire de cette approche est qu'elle pourra potentiellement permettre d'identifier les raisons qui poussent les usagers à ne pas utiliser les traitements tels qu'ils le devraient. En effet, sous le prisme d'un anonymat relatif, les usagers ont plus de facilités à exposer de manière directe les raisons de leurs agissements.
+
+De précédents travaux ont permis d'exploiter ce type de sources de données, en extrayant l'information pertinente dans le cadre d'une activité de veille sanitaire, et plus spécifiquement de pharmacovigilance. Ceci a été permis possible grâce à diverses stratégies de traitement des données non structurées (puisqu'étant issues de données textuelles libres), pour aboutir à une information au moins semi-structurées, notamment pour le repérage d'effets indésirables médicamenteux. Les étapes de traitement de données mises en oeuvres dans le cadre du travail réalisé par Sarker et al.\cite{Sarker2014} sur le sujet étaient les suivantes : 
+\begin{itemize}
+    \item traitement automatique de langage (TAL) sur les données issues des médias sociaux ;
+    \item indexation des données issues du TAL ;
+    \item utilisation de ces données via des algorithmes de machine learning, spécifiquement dédiés à la classification automatique de celles-ci comme relevant ou non d'effets indésirables médicamenteux ;
+    \item évaluation puis validation de ces différents processus par rapport à l'objectif souhaité.
+\end{itemize}
+
+Pour toutes ces raisons, le fait d'envisager les médias sociaux comme sources de données et d'informations semble être une approche prometteuse. Il faudra toutefois toujours bien veiller à tenir compte des limites inhérentes à de telles sources de données, ainsi que celles liées aux méthodologies envisagées. Il sera également nécessaire d'engager des processus d'évaluation puis de validation des informations produites, avant d'envisager pouvoir étendre ces processus aboutissant à la génération de ces informations.
+% Enjeux de santé publique ⇒ lutte contre le mésusage médicamenteux, prévention primo-secondaire avec potentielles mises en place d’interventions en population ciblée.
+% Enjeux apport méthodologique traitement de données non structurées de posts de forums publics
+% Enjeux de création d’un outil visant à l’amélioration des systèmes de veille pharmacologique, notamment en terme de réactivité / délai
+% prennent en considération l’hétérogénéité de l’information non structurée disponible sur internet : lexique spécifique au grand public tant pour le médicament, les effets indésirables, le mésusage et l’observance. Celles-ci peuvent prendre en compte cette spécificité en développant des méthodes avancées de machine « learning », « text-mining » et « datamining ». (issu de l'appel à projet)
+
+\subsubsection{Avancées du projet début 2018}
+Depuis l'émission de l'appel à projet par l'ANSM (cf \ref{appelProjet}), jusqu'en début d'année 2018, plusieurs approches avaient déjà été testées.
+
+L'objectif principal d'une des approches envisagées était la classification automatique des types de mésusages mis en évidence via l'émergence de signaux. Cette classification était rendue possible via de multiples étapes de préparation de données (preprocessing) pour générer des signaux servant ce but, par des algorithmes de machine learning. Ces algortihmes étaient mis en oeuvre après avoir indexées les données via plusieurs étapes de TAL\cite{Bigeard2018}.
+
+\subsubsection{Objectif principal}
+\textsc{à} la lumière de tous ces éléments, en débutant ce stage, l'objectif principal qui s'est dégagé était le suivant : élaborer des processus de traitement de données, à partir de données textuelles semi-structurées, et de bases de connaissances sur le médicament, pour aboutir à la génération de signaux de pharmacovigilance, pour le moment centrés sur le mésusage médicamenteux.
+
+\subsection{Découpage fonctionnel du projet}
+Les sous-sections suivantes exposeront les différentes parties du projet envisagées, ainsi que leurs articulations respectives souhaitées dans la forme finale de la solution envisagée.
+
+\subsubsection{Scraping}
+\textsc{à} partir des sites web d'intérêt, nous procédons à un parsing des pages HTML contenant des données textuelles issues de fil de discussion. Ce parsing a pour but de pouvoir extraire les données des posts d'utilisateurs ainsi que les métadonnées utiles qui y sont associées.\\
+Bien que les données récupérées soient issues de sources de données en accès libre, pour des raisons de confidentialité, les noms d'utilisateurs ont été hashées. Ce hash sert d'identifiant unique pour un utilisateur donné. De même, les dates de naissance associées à chaque compte utilisateur sont remaniées de la manière suivante : ré-attribution d'une nouvelle date en suivant une loi normale ayant comme moyenne la date de naissance de départ, avec une déviation standard fixée à 5 ans. 
+\begin{description}
+    \item[Données d'entrée :] site web d'intérêt.
+    \item[Données de sortie :] sous-ensembles de pages HTML, ne contenant que les parties contenant les données d'intérêt (texte des posts + métadonnées des posts).
+\end{description}
+
+De plus, les données potentiellement identifiantes, telles que les adresses, les numéros de téléphone, les noms propres etc, devraient être traitées avec des outils de dé-identification comme \emph{MEDINA}\cite{Grouin2013, Grouin2014a, Grouin2014}, pour ne plus figurer telles quelles dans la base de données\ref{fig:MEDINA}. Toutes ces démarches ont pour objectif de limiter la possibilité de ré-identification, à partir des données des posts, puisque contenant le plus souvent des données à caractère personnel et potentiellement de nature médicales.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6 \textwidth]{img/Medina.png}
+    \caption{\label{fig:MEDINA}Exemple de tags de données identifiantes générés par MEDINA}
+\end{figure}
+
+\subsubsection{Intégration sémantique}
+Une fois l'ensemble de ces données recueillies, vient alors une étape d'intégration sémantique. Au vu de la nature de la source de données, le choix s'est porté sur un modèle de représentation des connaissances conçu pour représenter les données des réseaux sociaux. Ce modèle utilise le format \emph{Resource Description Framework} (RDF) comme support de représentation, et est celui de l'ontologie \emph{Semantically-Interlinked Online Communities}\cite{Breslin2010} (SIOC) (figure \ref{fig:SIOC}).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6 \textwidth]{img/SIOC.png}
+    \caption{\label{fig:SIOC}Schéma ontologie SIOC}
+\end{figure}
+Afin de pouvoir stocker ces données, une fois modélisées, celles-ci sont stockées via un système de gestion de base de données (SGBD) spécifique. Le choix de ce SGBD s'est porté sur l'outil \emph{Blazegraph}\cite{Systap}, qui est utilisé comme triplestore, acceptant le format \emph{Resource Description Framework} (RDF).
+\begin{description}
+    \item[Données d'entrée :] sous-ensembles de pages HTML, ne contenant que les parties contenant les données d'intérêt (texte des posts + métadonnées des posts).
+    \item[Données de sortie :] triplets représentant les posts, selon le modèle SIOC, stockés dans une base de données Blazegraph.
+\end{description}
+
+\textsc{à} la suite de l'intégration sémantique, nous procédons à une indexation des données par l'intermédiaire de divers processus de TAL.
+
+\subsubsection{Segmentation des posts}
+Le premier processus mis en oeuvre est celui de la segmentation des posts en phrases.
+Pour ce faire, nous fournissons comme données d'entrée les données textuelles libres, qui constituent le contenu des posts des fils de discussion des forums.
+
+Les données textuelles des posts sont découpées en phrases via l'outil \emph{StanfordNLP Parser}\cite{Manning2014, Klein2018}. Ce choix d'unité élémentaire s'est fait selon la logique suivante : on s'attend à retrouver le lien entre un médicament et la ou les maladie(s) d'intérêt exprimé dans une même phrase. C'est en s'appuyant sur ces bases qu'un travail de recherche sur les effets indésirables à partir des réseaux sociaux a été récemment effectué\cite{Chen2018}.
+\begin{description}
+    \item[Données d'entrée :] triplets représentant les posts, selon le modèle SIOC, stockés dans une base de données Blazegraph.
+    \item[Données de sortie :] sous-ensembles de phrases, lesquels (les sous-ensembles) représentent pour chacun d'eux, un post d'intérêt, lié à ses métadonnées.
+\end{description}
+Une fois cette segmentation en phrases effectuées, nous mettons en oeuvre deux processus en parallèle, que sont : l'extraction des syntagmes nominaux depuis ces phrases, ainsi que l'annotation sémantique de ces mêmes phrases.
+
+\subsubsection{Tokenization des phrases en syntagmes nominaux}
+Le contenu des phrases est ensuite tokenizé via l'outil \emph{TreeTagger}\cite{Schmid}. \textsc{à} partir de la séquence de mots produite, \emph{TreeTagger} attribut un plusieurs attributs à chaque mot, dont un correspondant à sa catégorie grammaticale, comme illustré dans la figure \ref{fig:TreeTagger}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6 \textwidth]{img/sortieTT.png}
+    \caption{\label{fig:TreeTagger}Attribution label catégorie grammaticale TreeTagger}
+\end{figure}
+Par une requête formalisée via une expression régulière, les noms sont détectés, avec leurs éventuels déterminants et adjectifs. Ceux-ci sont alors transcrits en syntagmes nominaux. Il n'est pas fait usage de liste de mots vides, ni de dictionnaire pour cette étape.\\
+Ces syntagmes nominaux sont extraits des phrases, puisqu'ils représentent des termes importants au sein de ces phrases\cite{Kathait2017}. Une fois ces termes importants isolés, on peut alors s'en servir pour constituer une vecteur de termes importants, qui représente la phrase d'intérêt. On peut alors représenter un médicament X par le vecteur de l'ensemble des termes importants qui constituent les phrases dans lesquelles ce médicament survient.
+Ce sont ces vecteurs qui seront comparés entre eux, dans l'approche vectorielle détaillée dans la partie \ref{MtdVect} page \pageref{MtdVect}.
+
+\begin{description}
+    \item[Données d'entrée :] une phrase (ex : Mon médecin m'a prescrit du Seroplex pour ma dépression) ;
+    \item[Données de sortie :] un vecteur de syntagmes nominaux qui constitue cette phrase (médecin, Seroplex, dépression).
+\end{description}
+
+\subsubsection{Annotation sémantique}
+En parallèle du processus d'extraction des syntagmes nominaux, nous mettons en oeuvre une étape d'annotation sémantique des phrases via l'outil \emph{IAMsystem}\cite{Jouhet2018}. Celui-ci s'appuie sur la CIM10 comme dictionnaire de données, et s'y limite : l'outil cherche alors et ne détecte dans les phrases que les symptômes et maladies décrits dans la CIM10. C'est sur cette base que seront alors indexées les phrases.
+
+Le choix d'utiliser une terminologie standardisée se justifie par plusieurs raisons, exposées ci-après.
+Premièrement, les concepts correspondant aux maladies, symptômes etc, décrits dans les fiches Résumé des Caractéristiques du Produit (RCP), peuvent être représentés par un ou une association de codes de cette terminologie. Ces fiches RCP, émises par l'ANSM, font office de référence opposable dans le domaine du médicament en France, et renseigne sur les indications, contre-indications, etc. de chaque spécialité. C'est donc sur ces RCP que nous nous appuierons par la suite dans le cadre de ce projet, pour générer les signaux de suspicion de mésusage. De plus, il existe déjà des bases de connaissances ayant opéré cette étape de codage depuis les concepts décrits dans les RCP. Nous verrons dans la partie \ref{ChoixThériaque} page \pageref{ChoixThériaque}, celles qui ont été retenues pour ce projet.
+
+Cette étape d'annotation et donc d'indexation des phrases permet finalement d'opérer un changement de contexte dans les données exploitées, par le codage, via la CIM10. Nous passons d'un vocabulaire de référence issues d'un langage \og{}néophyte\fg{} en terme de santé, à un vocabulaire de référence structuré selon une terminologie bien arrêtée.
+C'est donc bien cette étape qui nous permet de détecter les concepts médicaux d'intérêt (ici codes CIM10). Ce seront ces mêmes concepts, extraits des phrases, qui seront mis plus tard en relation avec ceux récupérés via les bases de connaissances sur le médicament retenues.
+
+\begin{description}
+    \item[Données d'entrée :] Une phrase (ex : Mon médecin m'a prescrit du Seroplex pour ma dépression);
+    \item[Données de sortie :] Un vecteur de codes CIM10 qui constituent cette phrase (ex : F32). 
+\end{description}
+
+\subsubsection{Indexation des données de sortie du TAL}
+Les résultats des différents processus du TAL sont alors indexés dans une base de données orientée document. Ce choix facilite les processus à venir de recherche d'informations, par exemple pour constituer les ensembles de phrases contenant le médicament X, ainsi que les ensembles correspondants de phrases contenant les maladies, symptômes, etc. appartenant aux indications du médicament X.
+
+Par exemple, pour une classe ATC donnée, celle-ci contient généralement plusieurs médicaments. En utilisant ElasticSearch\cite{Banon}, il est possible d'agréger tous les médicaments d'intérêt dans la même requête pour constituer d'emblée un ensemble d'intérêt commun, représentant cette classe ATC.
+De même, si cela s'avère pertinent et réalisable avec les contraintes temporelles du projet, nous pourrions agréger toutes les informations différentes représentant un même médicament \emph{virtuel}, telles que les différents noms commerciaux, la Dénomination Commune Internationale (DCI), ainsi que le code ATC, dans une requête unique permettant de constituer un ensemble représentant le médicament X, de manière moins segmentée.\label{limiteAgregMedic}
+
+La figure \ref{fig:preProcess} reprend de manière synthétique toutes les étapes de preprocessing nécessaires à la mise en oeuvre des processus aboutissant à la génération des signaux de mésusage.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6 \textwidth]{img/Extraction.jpg}
+    \caption{\label{fig:preProcess}Principales étapes de preprocessing en vue de la construction des indicateurs de suspicion de mésusage médicamenteux}
+\end{figure}
+
+\subsubsection{Scoring}
+L'étape fonctionnelle relatée dans cette sous-section est celle sur laquelle a véritablement porté le sujet de ce stage de Master. Les méthodologies retenues seront donc plus détaillée dans la partie \ref{MéthodoDoMINO} page \pageref{MéthodoDoMINO}. Ci-après un résumé des fonctionnalités telles qu'envisagées au commencement de ce stage.\\
+\textsc{à} partir du corpus initial constitué de l'ensemble des posts, nous constituons deux vecteurs pour chaque médicament, chaque code ATC et chaque code CIM10.
+
+Concernant les codes ATC, le fait de constituer ces vecteurs pour chaque code, nous permet de comparer par exemple un médicament X à plusieurs classes ATC. Ces classes ATC pouvant être des classes contenant ce médicament, ou justement non.
+
+\begin{itemize}
+\item\textbf{Données d'entrée :}
+        \begin{itemize}
+            \item un vecteur de l'ensemble des syntagmes nominaux co-occurrents dans la même phrase ;
+            \item un vecteur de l'ensemble des codes CIM10 co-occurrents dans la même phrase ;
+            \item la liste des indication du médicament / de la classe ATC d'intérêt.
+        \end{itemize}
+\item\textbf{Traitements de données :}
+        \begin{itemize}
+            \item assignation d'un poids (ici\emph{TF-IDF}, cf ci-après, et partie \ref{TFIDF} page \pageref{TFIDF}), à chacun des syntagmes nominaux ou des codes CIM10 des vecteurs ;
+            \item classement des syntagmes nominaux / codes CIM10 au sein de ces vecteurs, par ordre de \emph{TF-IDF} décroissant ;
+            \item comparaison de ces différents ensembles selon deux approches (cf partie \ref{MéthodoDoMINO} page \pageref{MéthodoDoMINO}.
+        \end{itemize}
+\item\textbf{Données de sortie :}
+        \begin{itemize}
+            \item indicateur de suspicion de mésusage médicamenteux de mauvaise indication du médicament X.
+        \end{itemize}
+\end{itemize}
+
+\textsc{à} noter que le choix de pondérer chaque syntagme nominal / code CIM10 via la métrique TF-IDF se justifie par le fait que celle-ci constitue le support de nombreux moteurs de recherche. C'est notamment ce qu'il est possible d'exploiter dans le cadre de la recherche d'informations, via le moteur de recherche \emph{Apache Jakarta Lucene TF/IDF} et son approche vectorielle \cite{Carpenter2004}.
+
+\section{Matériel}
+\subsection{Choix de la source de données}
+\label{ChoixDoctissimo}
+Dans le cadre de l'appel à projet, il est fait mention de l'intérêt d'envisager exploiter de nombreuses sources de données issues des réseaux sociaux au sens large. Ceci se justifie par le fait que le volume de données posté régulièrement sur ces plateformes figure parmi les plus importants. De nombreux projets de recherche ont déjà exploités des informations extraites depuis Twitter, Facebook, voire des espaces de discussions virtuels centrées sur des thématiques prédéfinies\cite{Cameron2013,Bousquet2014,RavoireSophie2017}.
+
+En l'état actuel des choses, pour ce projet, la volonté est de se baser sur les posts issus d'un unique forum ayant un large panel d'utilisateurs, et traitant majoritairement de sujet ayant un rapport avec la santé. Ce choix s'est donc porté sur le forum \emph{Doctissimo} jusqu'ici. Ce choix se justifie par le fait que ce forum figure parmi ceux les plus actifs et visités par le grand public, par rapport aux questions de santé de manière générale. 
+Les interrogations en rapport avec la santé exposées sur ce forum sont souvent en lien avec la prise de certains traitements. Ces traitements sont alors le plus souvent explicitement cités dans les posts, ce qui nous permet d'en exploiter le contenu.
+
+De même, le choix ne s'est pas porté sur un forum plus spécialisé, dans le sens où les informations que l'on cherche à faire ressortir pour produire les signaux de suspicion de mésusage, celle-ci doivent être issus de données complémentaires à celles issues des voies de notifications. En effet, les informations issues des voies de notifications sont bien souvent produites par un public plus averti : les profils d'utilisateurs du forum \emph{Doctissimo} se révèlent être plutôt ceux de personnes néophytes en terme de connaissances médicales au sens large, de même que de connaissances des communautés autour de thématique de santé. De cette manière, en ciblant les données provenant d'une population plus large, nous espérons compenser le déficit intrinsèque des voies de signalisation plus classiques, évoquées dans la partie \ref{signalisation}, page \pageref{signalisation}.\\
+Ce phénotype particulier de la population d'utilisateurs de ce forum aura un impact quant aux concepts médicaux et médicaments les plus fréquemment rencontrés dans les posts. Nous détaillerons tout ceci plus en détail dans la partie \ref{contenuPosts}, page \pageref{contenuPosts}.
+
+Ces choix seront peut-être amenés à changer par la suite, via l'intégration d'autres sources potentielles de données, si les contraintes temporelles le permettent.
+
+En matière de volume de données, celles recueillies présentent les caractéristiques suivantes :
+\begin{description}
+    \item[Nombre de posts :] 5 073 462
+    \item[Nombre de fils de discussion :] 364 619
+    \item[Nombre de posts non vides :] 3 838 740
+    \item[Nombre de posts non vides avec un contenu distinct :] 3 792 104
+    \item[Nombre d'utilisateurs :] 55 250
+    \item[Nombre de posts contenant un médicament :] 232 414
+    \item[Nombre de posts contenant un concept médical :] 648 895
+    \item[Nombre de maladies détectées :] 1 044 781
+\end{description}
+
+\subsection{Caractéristiques des posts}
+Pour toutes le sous-parties à venir, les informations descriptives rapportées ne concernent que les posts ayant été indexés après la phase de TAL et donnant lieu à la détection d'au moins un code de la CIM10 ou à la détection d'au moins un médicament
+
+\subsubsection{Catégories du forum}
+L'immense majorité des posts extraits depuis le forum Doctissimo, l'a été depuis la catégorie \emph{Grossesse et bébé}. En deuxième position figurent les posts créés dans la catégorie \emph{Médicaments}, mais avec un effectif quasiment 10 fois moindre que celui de la catégorie précédente. Cette répartition est présentée à la figure \ref{fig:EffCtgForum} page \pageref{fig:EffCtgForum}.
+
+Cette répartition aura des répercussions au niveau des médicaments et concepts médicaux les plus souvent rencontrés. Ces spécificités en matière de recrutement seront reprises et détaillées dans les parties suivantes.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7 \textwidth]{graphs/subSectionForumsDoctissimo.png}
+    \caption{\label{fig:EffCtgForum}Répartition des posts selon les catégories du forum}
+\end{figure}
+
+\subsubsection{Sous-catégories du forum}
+Dans la logique de répartition des posts selon les différentes catégories du forum, la répartition dans les différentes sous-catégories met en évidence une écrasante majorité de posts publiés dans des sous-catégories en rapport avec la grosses et la périnatalité. Nous pouvons remarquer que la première, en matière d'effectif, sous-catégorie en rapport avec des médicaments se trouvent être celle portant sur les antidépresseurs et les anxiolytiques. De même, cela aura une répercussion au niveau des médicaments et concepts médicaux les plus souvent rencontrés. Cette répartition est présentée à la figure \ref{fig:EffCtgGrossForum}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75 \textwidth]{graphs/sectionForumsDoctissimo.png}
+    \caption{\label{fig:EffCtgGrossForum}Répartition des posts dans les différentes sous-catégories du forum, toutes catégories confondues} 
+\end{figure}
+
+La répartition dans les sous-catégories constituant la catégorie \emph{Médicaments} est rapportée à la figure \ref{fig:mostFrqDrg}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{graphs/subSectionInMedicamentsSection.png}
+    \caption{\label{fig:mostFrqDrg}Répartition des posts selon les sous-catégories du forum concernant les médicaments}
+\end{figure}
+
+\subsubsection{Métadonnées des posts}
+Les graphiques représentant la répartition des posts selon leur date de création et le nombre de caractère ont été construits de telle façon qu'il ne survient pas de surcharge d'informations sur les graphiques, rendant illisibles la lecture de ceux-ci. Ainsi, pour palier les défauts de graphiques en nuage de points \og{}standards\fg{}, face à une quantité importante de données, ont été préférés des graphiques proches, mais pouvant rendre compte d'une densité de points également.
+
+Les parties des graphiques comportant une densité faible de points sont représentées par de simples points ; les parties comportant une densité moyenne de points sont représentées par la couleur bleue, de plus en plus foncée à mesure que la densité augmente ; les parties comportant une densité élevée de points sont représentées par la couleur rouge, de plus en plus claire à mesure que la densité augmente (nous avons donc une transition de densité moyenne à élevée depusi le bleu foncé vers le rouge foncé).
+
+Les posts recueillis dans un premier temps, sur lesquels nous avons basé nos évaluations préliminaires, ont été postés entre depuis le début de l'année 2010, jusqu'à la fin de l'année 2016.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8 \textwidth]{graphs/Eff_posts_date.png}
+    \caption{\label{fig:EffPostsDate}Nombre de posts par date de création}
+\end{figure}
+Si l'on se place sur une échelle linéaire, les effectifs semblent relativement stables quelles que soient les périodes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8 \textwidth]{graphs/Eff_posts_date_log.png}
+    \caption{\label{fig:EffPostsDateLog}Nombre de posts (log) par date de création}
+\end{figure}
+En revanche, si l'on analyse la répartition selon une échelle logarithmique, il semblerait qu'il y ai certaines périodes cumulant un grand nombre de création de posts. Au niveau périodicité, cela ne semble pas correspondre à des périodes de l'année régulière pourtant. Peut-être est-ce le fait d'opérations de maintenance sur le site.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7 \textwidth]{graphs/Eff_posts_nb_char.png}
+    \caption{\label{fig:EffPostsNbChar}Nombre de posts selon le nombre de caractères}
+\end{figure}
+De même, en illustrant la répartition des posts selon le nombre de caractères, via une échelle linéaire, la répartition semble relativement linéaire, si l'on omet quelques valeurs extrêmes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7 \textwidth]{graphs/Eff_posts_nb_char_log_trunc.png}
+    \caption{\label{fig:EffPostsNbCharLog}Nombre de posts (log) selon le nombre de caractères (trunc)}
+\end{figure}
+Si l'on analyse la répartition selon une échelle logarithmique, l'hypothèse d'une répartition linéaire semble se confirmer.
+
+\subsubsection{Contenu des posts}
+\label{contenuPosts}
+Comme indiqué dans la partie \ref{ChoixDoctissimo}, page \pageref{ChoixDoctissimo}, le profil des utilisateurs du forum peut présenter des caractéristiques spécifiques, qui ont un impact au niveau du contenu des données exploitées.\\
+Premièrement, parmi tous les concepts médicaux retrouvés au sein des posts, une écrasante majorité se rapporte au concept de \og{}grossesse\fg{}. Une des explications possibles est que la communauté la plus active sur cette plateforme se trouve dans la tranche d'âge compatible avec cet état.\\
+En deuxième position des concepts les plus fréquemment retrouvés figure celui de \og{}peur\fg{}, puis en troisième position celui de \og{}douleurs\fg{}. Viennent ensuite successivement les concepts de : \og{}stress\fg{}, \og{}vomissements\fg{}, \og{}anxiété\fg{}, etc. Nous pouvons aisément supposer que ceux-ci sont liés à un contexte plus général de questions liées à la grossesse.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{graphs/mostFrequentDiseases.png}
+    \caption{\label{fig:mostFrqDis}Concepts médicaux les plus souvent cités dans les posts}
+\end{figure}
+Les concepts médicaux figurant sur cette figure sont ceux décrits par des codes CIM10, donc ceux se rapportant à des symptômes ou des maladies.
+\textsc{à} noter qu'il semble se dégager une deuxième grande catégorie d'intérêt, assez fréquemment retrouvée : celle en rapport avec des troubles de l'humeur ou des troubles liés à des facteurs de stress.
+Ces constats sont repris dans la figure \ref{fig:mostFrqDis}.\\
+
+Assez logiquement, les médicaments les plus fréquemment cités dans les posts semblent être majoritairement en rapport avec la grossesse, la contraception, l'antalgie, les cycles menstruels (supplémentation hormonale, supplémentation en fer, supplémentation en acide folique, etc.)
+Ces constats sont repris dans la figure \ref{fig:mostFrqDrg}.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{graphs/mostFrequentDrugs.png}
+    \caption{\label{fig:mostFrqDrg}Médicaments les plus souvent cités dans les posts}
+\end{figure}
+
+\subsection{Sources noms médicaments}
+Les noms de médicament, injectés dans les requête soumises à ElasticSearch, ont été récupérés via ROMEDI\cite{Cossin2018}. Cette solution nous permet de faire le lien entre les différentes entités servant à la description d'un médicament.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{img/RomediExample.png}
+    \caption{\label{fig:ROMEDIExample}Exemple découpage des informations liées à un médicament. Le nom commercial (BN), la DCI, les classes et le code ATC, le dosage et la forme sont extraits automatiquement de la dénomination du médicament de la base publique des médicaments : le lien entre toutes ces entités est donc fait au travers de cet outil.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{img/ROMEDILiensBN.png}
+    \caption{\label{fig:ROMEDILiens}Exemple de liens entre les différents termes d’un médicament dans ROMEDI.}
+\end{figure}
+
+\subsection{Sources noms concepts médicaux}
+Un dictionnaire local de la CIM10 a été créé par l'équipe ERIAS, en accord avec les diverses sources d'informations sollicitées dans le cadre de ce projet.
+
+\section{Méthodes}
+\label{MéthodoDoMINO}
+Les méthodologies décrites ci-après ont toutes été élaborées et testées dans le but de repérer un potentiel mésusage de non-indication. Hors, il existe d'autres types de mésusage, que nous pensons également possibles de repérer en adaptant les méthodes élaborées jusqu'ici, avec les données spécifiques décrivant ces types de mésusage. Par exemple, il semble licite qu'on puisse faire émerger des signaux de mésusage de contre-indication, en se basant sur les concepts rapportés dans la partie dédiée des RCP.
+
+En l'état actuel d'avancement du projet, deux approches ont finalement été retenues. Celles-ci se fondent sur une approche statistique du lien entre un médicament et la raison de sa prise, en se basant sur des co-occurrences. Il existent d'autre scénarios possibles pour déterminer ce lien, notamment via différents processus de TAL plus poussés que ce qui a été mis en oeuvre ici, mais qui ne sont, au moins pour le moment, pas envisagées dans le cadre de ce projet.\\
+Ces approches statistiques offrent l'avantage de performances élevées, et donc de réactivité, ce qui correspond finalement à une des priorités qui ont été évoquées par les utilisateurs finaux.De même, ce genre d'approche présente l'avantage de potentielles intégrations futures relativement aisées.
+
+
+\subsection{Notions utilisées}
+\label{TFIDF}
+Le calcul de la métrique \emph{TF-IDF} est une méthode permettant d’associer un poids à un concept ou à un terme (syntagme nominal).
+
+Celui-ci est pondéré d'un poids, selon sa fréquence dans le document d'intérêt : on détermine alors son \emph{Term Frequency}, ou \emph{TF}, qui permet d'estimer l'importance d'un terme dans un document. Il est par ailleurs également indexé selon sa fréquence inverse de document : on détermine alors son\emph{Inverse Document Frequency}, ou \emph{IDF}, qui permet d'estimer le poids de ce terme dans l'ensemble des documents. L’IDF permet de donner un poids plus important aux termes les moins fréquemment rencontrés au sein des documents d'intérêt : ceux-ci sont alors considérés comme plus discriminants.
+
+La métrique TF-IDF est en réalité une association des deux métriques sus-citées, permettant de rendre compte du caractère fréquent et discriminant du terme, concept etc d'intérêt. Son calcul se fait via de la façon suivante :\vspace{0.5cm}
+
+ \begin{minipage}{\textwidth}
+ \centering
+ $tf_{i,j} = \frac{n_{i,j}}{\sum_k n_{k,j}}$\\
+ $idf_i = \mbox{log} \frac{|D|}{|{d : t_i \in d}|}$\\
+ \[\fbox{$tf_{ij}-idf_{i} \; = \; tf_{ij} \times idf_{i} \; = \; \frac{n_{i,j}}{\sum_k n_{k,j}} \times log\frac{N}{df_i}$}\]
+ \footnotesize
+    \[tf_{ij} = fréquence\ du\ terme\ i\ dans\ le\ document\ j\]
+    \[idf_i = fréquence\ inverse\ du\ terme\ i\ dans\ le\ corpus\ D\ de\ documents\]
+    \[D = ensemble\ des\ documents\ (posts\ ou\ phrases)\ constituant\ le\ corpus\]
+    \[df_{i} = nombre\ de\ documents\ contenant\ le\ terme\ i\]
+    \[N = nombre\ total\ de\ documents\ (posts\ ou\ phrases)\ dans\ l’index\]\\
+  \normalsize
+\end{minipage}
+\vspace{0.5cm}
+
+La qualification d'une phrase, comme relatant ou non un mésusage médicamenteux, se base sur l'utilisation de bases de connaissances, produites par des autorités faisant office de référence dans le domaine du médicament. Celles-ci comportent des informations sur diverses notions se rapportant à un médicament X d'intérêt :
+\begin{itemize}
+    \item ses indications thérapeutiques ;
+    \item ses contre-indications ;
+    \item ses précautions d'emploi ;
+    \item etc.
+\end{itemize}
+
+\subsection{Première approche (comparaison phrases et référentiels)}
+Cette méthodologie veut se rapprocher le plus possible de ce que nous avons déterminé comme étant la démarche \og{}\emph{Gold standard}\fg{}. \textsc{à} savoir la détection et caractérisation d'au moins une phrase concernant un médicament d'intérêt comme rapportant ou non un mésusage médicamenteux. Ce gold standard étant réalisé par un humain, expert dans le domaine.
+
+Toutefois, cette première approche automatisée comporte des limites, inhérentes aux contraintes qu'imposent les outils informatiques. Celles-ci seront plus amplement reprises dans la partie \ref{limites} \pageref{limites}.
+
+\subsubsection{Méthodologie approche comparaison phrases et référentiel}
+Pour cette approche, nous nous appuyons sur les vecteurs de codes CIM10 co-occurrents. Nous récupérons l'ensemble des vecteurs représentant l'ensemble des phrases contenant le médicament X, après avoir constitué puis soumis la requête correspondant à ElasticSearch. Le but va être de pouvoir comparer cet ensemble de codes CIM10 avec un référentiel structuré (les informations fournies par Thériaque).\\
+\textsc{à} partir de cet ensemble, nous procédons alors à une mesure de fréquence de type TF, IDF puis TF-IDF pour tous ces codes CIM10. Nous ordonnons alors ces codes CIM10 par ordre de TF-IDF décroissant.
+Le tableau \ref{table:MsrTFIDF} illustre un exemple de cette approche, au travers des trois premiers codes CIM10 retrouvés les plus fréquemment selon le TF-IDF, dans l'ensemble des phrases évoquant ce médicament. Les TF et IDF sont donnés ici à titre indicatif, puisqu'ayant servis au calcul de la métrique d'intérêt retenue (TF-IDF). De même, le libellé figure lui aussi à titre purement indicatif, puisqu'un code CIM10 tel que retenu ici, peut avoir plusieurs libellés.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llrrr}
+\hline
+code CIM10 & libellé & TF-IDF & TF & IDF \\
+\hline
+F419 & anxiete & 0.17 & 0.05 & 3.6 \\
+Z749 & dependance & 0.16 & 0.03 & 6.3 \\
+M100 & goutte & 0.11 & 0.02 & 5.9 \\
+\hline
+\end{tabular}
+\caption{Exemple de métriques obtenues par l'approche de comparaison phrases et référentiel, en se basant sur le Rivotril}
+\label{table:MsrTFIDF}
+\end{table}
+
+En parallèle de ces étapes, nous récupérons le résultat d'une requête listant les concepts médicaux figurant dans la partie \emph{indications} de la ou des RCP du médicament X. N'ayant pas encore à disposition de ressources internes ou accessibles librement pouvant faire office de référentiel structuré robuste, nous avons demandé à Thériaque ces informations. Celles-ci étaient disponibles sous la forme d'une base de données comportant des listes de codes CIM10, dans des tables distinctes pour les différentes parties des RCP (indications, contre-indications, précautions d'emploi, etc.).\label{ChoixThériaque}\\
+Un exemple de représentation de ces informations est repris dans le tableau \ref{table:TheriaqueIndicationsPalu}, ci-après.
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lll}
+  \hline
+Médicament & code CIM10 & Libellé indication (long) \\ 
+  \hline
+ARSIQUINOFORME CPR NSFP & B51 & PALUDISME A PLASMODIUM VIVAX, SAI \\ 
+  QUINIMAX 100MG CPR NSFP & B51 & PALUDISME A PLASMODIUM VIVAX, SAI \\ 
+  ARSIQUINOFORME CPR NSFP & B52 & PALUDISME A PLASMODIUM MALARIAE, SAI \\ 
+  QUINIMAX 100MG CPR NSFP & B52 & PALUDISME A PLASMODIUM MALARIAE, SAI \\ 
+  ARSIQUINOFORME CPR NSFP & B53 & PALUDISME A PLASMODIUM OVALE \\ 
+  QUINIMAX 100MG CPR NSFP & B53 & PALUDISME A PLASMODIUM OVALE \\ 
+  ARSIQUINOFORME CPR NSFP & B53 & PALUDISME A PLASMODIES SIMIENNES \\ 
+  QUINIMAX 100MG CPR NSFP & B53 & PALUDISME A PLASMODIES SIMIENNES \\ 
+   \hline
+\end{tabular}}
+\caption{Exemple des informations (dont codes CIM10) sur les indications de médicaments anti-palustres, tels que fournies par Thériaque}
+\label{table:TheriaqueIndicationsPalu}
+\end{table}
+
+
+\textsc{à} noter qu'il est souhaité qu'un référentiel structuré équivalent soit produit par l'intermédiaire du projet ROMEDI\cite{Cossin2018}, qui devrait pouvoir mettre à disposition ces informations codées, en produisant l'information directement depuis les RCP.
+
+Une fois ces deux étapes effectuées, nous gardons comme indicateur le meilleur rang parmi ceux des concepts appartenant aux indications du médicament X. Le postulat est alors le suivant : si le rang de ce premier concept appartenant aux indications est \og{}faible\fg{}, alors on peut suspecter que ce médicament est utilisé pour d'autres indications que celles recensées dans la base de données Thériaque. Autrement dit, il y a une forte suspicion de mésusage médicamenteux, puisqu'il n'est finalement pas souvent fait mention des concepts se rapportant aux indications. C'est de cette manière que nous avons sélectionné notre échantillon pour procéder à l'évaluation préliminaire de cette approche : nous avons retenu tous les médicaments possédant un concepts des indications avec un rang au mieux de 30 (cf partie \ref{EvalRank}, page \pageref{EvalRank}).
+
+\subsubsection{Application}
+Ci-après deux exemples successifs, respectivement : l'un ayant été évalué comme ne se rapportant pas à une situation de mésusage, l'autre ayant été évalué comme se rapportant à une situation de mésusage. Ils ont pourtant tous deux donné lieu à la production d'un signal via cette première approche, comme illustré ci-après.
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llrrrr}
+\toprule
+Code CIM10 & Libellé            & Indication Thériaque O/N & TF-IDF & TF   & IDF  \\ \midrule 
+K219       & reflux             & 0                        & 0.43   & 0.08 & 5.27 \\
+R12        & aigreurs d estomac & 0                        & 0.25   & 0.04 & 6.31 \\
+X09        & incendie           & 0                        & 0.13   & 0.02 & 6.02 \\
+W78        & regurgitations     & 0                        & 0.09   & 0.01 & 6.41 \\
+T179       & fausses routes     & 0                        & 0.08   & 0.01 & 6.82 \\
+R11        & vomissements       & 0                        & 0.07   & 0.02 & 3.42 \\
+K20        & oesophagite        & 0                        & 0.07   & 0.01 & 7.69 \\
+R529       & douleurs           & 0                        & 0.06   & 0.03 & 2.23 \\
+O95        & grossesse          & 0                        & 0.06   & 0.04 & 1.60 \\
+K590       & constipation       & 0                        & 0.03   & 0.01 & 5.63 \\
+R05        & toux               & 0                        & 0.03   & 0.01 & 5.55 \\
+F40        & peur               & 0                        & 0.03   & 0.01 & 2.18 \\
+T784       & allergie aux       & 0                        & 0.02   & 0.00 & 4.91 \\
+A22        & charbon            & 0                        & 0.02   & 0.00 & 8.07 \\
+M54        & mal dans le dos    & 0                        & 0.02   & 0.00 & 4.89 \\ \bottomrule 
+\end{tabular}}
+\caption{Exemples métriques approche comparaison phrases et référentiels, médicament suspect de mésusage (Motilium), avec évaluation en faveur d'un mésusage non avéré.}
+\label{table:RankingMotilium}
+\end{table}
+Les mesures de TF et IDF sont ici rapportées à titre indicatif, et pour validation des calculs du TF-IDF. Ainsi pour le code K219, nous retrouvons bien une valeur de TF-IDF à 0.43, ce qui correspond effectivement au produit du TF à 0.08 (arrondi à la deuxième décimale) et de l'IDF à 5.27 (arrondi à la deuxième décimale), de ce code CIM10 dans le corpus d'intérêt.
+
+Ici, les concepts ayant le plus haut rang (par ordre de TF-IDF décroissant) se trouvent être des concepts proches de ceux figurant dans les indications selon Thériaque. La proximité de ces concepts avec ceux des indications nous permet de suspecter qu'il n'est pas fait état de mésusage médicamenteux lors de l'évaluation. Une fois les phrases ayant participé à produire ce signal évaluées, nous nous rendons bien compte qu'aucune ne faisait état d'un mésusage médicamenteux. 
+
+Il s'agit ici d'une des limites inhérentes au référentiel choisi : pour le Motilium, selon Thériaque, il n'existe qu'un seul code CIM10 en rapport avec les indications de ce médicament, à savoir \emph{O21 Vomissements incoercibles au cours de la grossesse}. Hors, lors de l'évaluation, nous nous sommes basées sur les RCP de l'ANSM, et celles-ci rapportent bien des maladies ou symptômes comme faisant partie des indications tels que : \emph{nausées, vomissements, sensations de distension épigastrique, gêne au niveau supérieur de l'abdomen et régurgitations gastriques}.
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}lllrrr@{}}
+\toprule
+code CIM10 & Libellé                 & Indication Thériaque O/N & TF-IDF & TF   & IDF  \\ \midrule
+F419       & anxiete                 & 0                        & 0.17   & 0.05 & 3.58 \\
+Z749       & dependance              & 0                        & 0.16   & 0.03 & 6.28 \\
+M100       & goutte                  & 0                        & 0.11   & 0.02 & 5.86 \\
+G40        & epilepsie               & 0                        & 0.11   & 0.01 & 8.13 \\
+H931       & acouphenes              & 0                        & 0.11   & 0.01 & 8.06 \\
+F329       & depression              & 0                        & 0.09   & 0.02 & 4.31 \\
+G409       & epileptique             & 0                        & 0.08   & 0.01 & 7.92 \\
+R529       & douleurs                & 0                        & 0.08   & 0.03 & 2.23 \\
+F102       & alcool                  & 0                        & 0.05   & 0.01 & 6.14 \\
+R568       & convulsions             & 0                        & 0.05   & 0.01 & 7.64 \\
+R51        & maux de tete            & 0                        & 0.04   & 0.01 & 4.91 \\
+R002       & palpitations cardiaques & 0                        & 0.04   & 0.01 & 7.08 \\
+G47        & troubles du sommeil     & 0                        & 0.03   & 0.00 & 7.83 \\
+F40        & peur                    & 0                        & 0.03   & 0.01 & 2.18 \\
+R400       & envie de dormir         & 0                        & 0.03   & 0.00 & 5.63 \\ \bottomrule
+\end{tabular}}
+\caption{Exemples métriques approche comparaison phrases et référentiels, médicament suspect de mésusage (Rivotril), avec évaluation en faveur d'un mésusage avéré.}
+\label{table:RankHeadRivotr}
+\end{table}
+
+Ici, d'après Thériaque, le seul code CIM10 appartenant aux indications est \emph{G41 \textsc{é}tat de mal épileptique}. Hors, nous pouvons retrouver de nouveau des concepts assez proches, dans ceux ayant un haut rang. En revanche, l'évaluation aura finalement ici permis de mettre en évidence que le Rivotril est effectivement utilisé, d'après les utilisateurs du forum, comme anxiolytique. Cette indication ne figure plus parmi celles pour lesquelles l'Autorisation de Mise sur le Marché (AMM) a été délivrée. Il y a donc un mésusage avéré, qui a été mis en lumière par l'intermédiaire des signaux générés par cette méthode.
+
+\subsection{Deuxième approche (vectorielle)}
+\label{MtdVect}
+
+\subsubsection{Méthodologie approche vectorielle}
+La cosinus-similarité est la mesure de similarité entre deux vecteurs non nuls, définis dans un espace préhilbertien, qui est en réalité la mesure du cosinus de l'angle entre ces deux vecteurs.
+
+Cette cosinus-similarité est donc utilisée comme un indicateur de ressemblance entre deux vecteurs d'intérêt. Elle permet de se baser sur une métrique reflétant le degré de similarité de deux vecteurs ayant tous les deux \emph{n} dimensions. Ces vecteurs sont ici la représentation choisie de deux ensembles que nous souhaitons comparer. Le but est ici d'ordonner les ensembles d'intérêt, via leurs degrés de similarité avec les autres ensembles.
+
+Cette deuxième approche permet de s'affranchir de deux limites majeures de la première approche. Ces limites et comment l'approche vectorielle s'en affranchit sont plus amplement rapportées dans la partie \ref{LimitesCompaRef} page \pageref{LimitesCompaRef}
+
+Ici ces deux vecteurs sont la forme qui est retenue pour représenter les ensembles (de posts et donc de phrases) d'intérêt qui sont comparés. Pour parvenir à cette représentation, ces ensembles sont indexés de la même manière que pour la première approche, à ceci près que l'unité retenue est le syntagme nominal. Ces ensembles sont alors représentés par le vecteur de l'ensemble des syntagmes nominaux des phrases d'intérêt, ainsi que la mesure de leur TF-IDF.\\
+Pour déterminer le degré de similarité de ces ensembles, nous calculons alors la cosinus-similarité entre leur vecteur. Pour rappel, celle-ci correspond au cosinus de l'angle entre ces deux vecteurs. La formule de ce calcul est la suivante :\\
+
+\begin{minipage}{\textwidth}
+$$ sim(q,d) \; = \; \vec{v(q)} . \vec{v(d)} \; = \; \frac{\vec{V(q)} . \vec{V(d)}}{\| \vec{V(q)} \| . \| \vec{V(d)} \|} $$
+\[\fbox{$sim(\Vec{A},\Vec{B})=\cos{\theta}$}\]
+ \[\fbox{$\cos{\theta}=\frac{A \cdot B}{||A|| \cdot ||B||}$}\]
+    \footnotesize \[\Vec{A} = vecteur\ représentant\ l'ensemble\ A,\ à\ n\ dimensions\]
+    \[\Vec{B} = vecteur\ représentant\ l'ensemble\ B,\ à\ n\ dimensions\]
+    \normalsize
+\end{minipage}
+\vspace{0.5cm}
+
+afin d'assurer la viabilité d'un tel calcul, il est nécessaire que les deux vecteurs soient non nuls, et possèdent le même nombre de dimensions. Pour ce faire, lorsque les vecteurs représentant l'index des termes retrouvés étaient de dimensions non identiques, nous avons rajouté à chacun d'entre eux les termes non présent dans l'un, mais présent dans l'autre, avec un TF-IDF de 0. 
+
+Une fois cette mesure de similarité effectuée, nous ordonnons ces corpus, de manière à faire ressortir ceux se rapprochant le plus du corpus du médicament X, par indicateur de similarité décroissant.
+En l'état actuel des choses, cette deuxième approche nécessite plus ample investigation et évaluation. Son évaluation préliminaire est encore à produire, bien que quelques cas aient été testés. Ces quelques cas explorés ont été choisis pour vérifier si un signal fort émis par la première approche, et validé après évaluation, donnait lieu à la production de signaux via cet intermédiaire.
+
+\subsubsection{Application}
+
+Ci-après un exemple qui a retenu notre attention : celui du Rivotril, qui a été évalué comme réellement sujet à un mésusage, avec la première approche.
+
+Ci-après, dans le tableau \ref{table:VectHeadRivotr}, est illustrée la manière dont sont construits les vecteurs de syntagmes nominaux, associés à la mesure de TF-IDF correspondante.
+Le vecteur est ici représenté par la première colonne listant les syntagmes nominaux, associés à leur valeur de TF-IDF répertoriée dans la deuxième colonne.
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lrrrrrr}
+  \hline
+Syntagme nominal & TFIDF & frequencyCTDrug & frequencyDrug & TF & frequency & IDF \\ 
+  \hline
+sevrage & 0.79 & 94 & 674 & 0.14 & 3503 & 5.70 \\ 
+  valium & 0.70 & 66 & 674 & 0.10 & 823 & 7.15 \\ 
+  goutte & 0.64 & 78 & 674 & 0.12 & 4074 & 5.55 \\ 
+  xanax & 0.37 & 43 & 674 & 0.06 & 3388 & 5.73 \\ 
+  effet & 0.29 & 51 & 674 & 0.08 & 22971 & 3.82 \\ 
+  jour & 0.26 & 67 & 674 & 0.10 & 79603 & 2.58 \\ 
+  neurologue & 0.25 & 21 & 674 & 0.03 & 295 & 8.17 \\ 
+  bonjour & 0.23 & 39 & 674 & 0.06 & 20903 & 3.91 \\ 
+  2 mg & 0.22 &  17 & 674 & 0.03 & 150 & 8.85 \\ 
+  dose  & 0.21 & 29 & 674 & 0.04 & 7277 & 4.97\\ 
+   \hline
+\end{tabular}}
+\caption{Aperçu des métriques de l'approche vectorielle du Rivotril}
+\label{table:VectHeadRivotr}
+\end{table}
+
+Les mesures de fréquence \emph{frequencyCTDrug}, \emph{frequencyDrug} et \emph{frequency} sont ici rapportées à titre indicatif, et pour validation des calculs du TF et de l'IDF. Ainsi pour le syntagme nominal sevrage, nous retrouvons bien une valeur de TF à 0.14, ce qui correspond effectivement à la division de la \emph{frequencyCTDrug} à 674 par la \emph{frequencyDrug} à 94.
+
+La similarité du vecteur de syntagmes nominaux du Rivotril avec d'autres vecteurs ne fait pas ressortir les ensembles que l'on serait en droit d'attendre (vecteur de la classe ATC du Rivotril, vecteur des codes CIM10 de ses indications). Comme illustré dans le tableau \ref{table:SimRivotril}, le Rivotril possède un contexte (représenté par son vecteur de syntagmes nominaux pondérés de leur TF-IDF) proche de celui du Lysanxia (qui est un anxiolytique) et de celui de la classe ATC N05B (classe des anxiolytiques).
+\begin{table}[H]
+\centering
+\begin{tabular}{rl}
+  \hline
+sim & libelle \\ 
+  \hline
+  1.00 & rivotril \\ 
+  0.57 & lysanxia \\ 
+  0.56 & n05b (anxiolytiques) \\ 
+  0.54 & valium \\ 
+  0.54 & xanax \\ 
+  0.53 & n05a (antipsychotiques) \\ 
+  0.53 & n06a (antidepresseurs) \\ 
+  0.51 & tercian \\ 
+  0.51 & temesta \\ 
+  0.51 & stilnox \\ 
+   \hline
+\end{tabular}
+\caption{Proximité sémantique du Rivotril : mesure de similarité entre le vecteur de syntagmes nominaux du Rivotril, et les autres vecteurs de syntagmes nominaux}
+\label{table:SimRivotril}
+\end{table}
+
+\section{Résultats}
+
+\subsection{Évaluation préliminaire des méthodologies envisagées}
+Parmi les médicaments d'intérêt possédant des signaux significatifs, certains ont révélé les limites des approches envisagées après évaluation de la pertinence des signaux générés. Ces limites sont plus amplement reprises dans la partie \ref{limites} page \pageref{limites}. Dans cette partie nous nous concentrerons sur la partie évaluation préliminaire, avec production des premiers résultats.\\
+Cette première étape d'évaluation avait pour but d'identifier les principaux problèmes, une fois les données dont nous disposons, soumises aux divers processus de traitement de données envisagées.
+C'est pour cela que nous parlons ici d'évaluation préliminaire. Une évaluation plus approfondie sera entreprise par la suite, une fois les solutions pour palier ces divers problèmes retrouvés, mises en oeuvre. \textsc{à} l'heure de la rédaction de ce mémoire, cette évaluation plus poussée est envisagée dans les mois à venir. Elle consistera à faire des tests utilisateurs (dans le même temps sur le plan ergonomique de l'interface utilisateur), en recrutant un panel d'experts en pharmacovigilance, qui valideront ou non les signaux générés, sur la base d'un échantillon pré-déterminé.\\
+Nous pourrons alors calculer les divers indicateurs de performance de la solution envisagée, via des mesures de précision, de rappel ou encore de F-mesure. Le paramètre ici souhaité maximal est le rappel, puisqu'il est préférable de générer tous les signaux qui reflètent un réel cas de mésusage, même si cela implique une génération de bruit conséquente.
+
+\subsubsection{Évaluation préliminaire méthodologie comparaison phrases et référentiels}
+\label{EvalRank}
+La constitution de l'échantillon sur lequel portera cette évaluation préliminaire s'est faite en sélectionnant les médicaments selon les critères suivants :
+\begin{itemize}
+    \item médicament ayant été retrouvé dans au moins 30 posts ;
+    \item concept médical, extrait des indications du médicament d'intérêt, ayant le plus haut rang, retrouvé en 6ème position au mieux.
+\end{itemize}
+
+Sur la base de ces critères nous avons fait ressortir 117 médicaments présentant ces caractéristiques.
+Une fois cette première sélection effectuée, il a été rapidement effectué une nouvelle sélection au sein de cet échantillon. Celle-ci s'est justifié par le fait de noms de médicaments ambigus, ne permettant pas d'estimer de façon fiable, si le mésusage suspecté était bien du ressort du médicament d'intérêt supposé. Dans la partie \ref{ambig}, page \pageref{ambig}, je reprends plus en détail ce problème.\\
+Une fois cette deuxième sélection effectuées, 45 médicaments d'intérêt ont été retenus. L'évaluation a alors consisté en une qualification des phrases ayant produit ces signaux. Cette qualification avait pour but de déterminer si oui ou non, parmi les phrases ayant participé à la génération du signal, au moins l'un d'entre eux faisait référence à un mésusage médicamenteux. Nous souhaitions donc initialement une répartition de cet échantillon en 2 sous-groupes, à savoir : mésusage effectivement rapporté pour le médicament X versus pas de mésusage rapporté pour le médicament X.\\
+Pourtant, il aura finalement était nécessaire de segmenter en plus de groupes. Ainsi le découpage s'est opéré à la manière de ce qui est décrit dans la table \ref{table:EffEvalRank}.
+La personne en charge de cette partie de l'évaluation était un interne en médecine, préalablement sensibilisé aux divers enjeux liés à ce projet. La base de connaissances sur laquelle s'est appuyé cet évaluateur était : les fiches RCP, produites par l'ANSM, qui font également office de référence médicale opposable dans le domaine.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lr@{}}
+\toprule
+catégorisation                                  & effectifs \\ \midrule
+certitude de la présence d'un mésusage rapporté & 6         \\
+mésusage fortement suspecté                     & 1         \\
+mésusage faiblement suspecté                    & 5         \\
+certitude de l'absence de mésusage rapporté     & 33        \\ \midrule
+total                                           & 45    
+\end{tabular}
+\caption{Répartition dans les différentes catégories issues de l'évaluation de l'approche de comparaisons phrases et référentiels}
+\label{table:EffEvalRank}
+\end{table}
+
+\subsubsection{Évaluation préliminaire approche vectorielle}
+Cette deuxième approche n'a pas encore entièrement bénéficié de cette évaluation préliminaire. Ce devrait être le cas dans les semaines à venir. Néanmoins, après un très court aperçu des signaux produits, plusieurs points positifs liés à cette approche semblent émerger.
+
+Nous avons pris le temps de regarder les ensembles les plus proches, en matière de similarité, de quelques uns des médicaments ayant été évalués comme effectivement sujets à un mésusage, via la première approche. Et ceux-ci se sont révélés aussi être source de la production de signaux selon cette deuxième approche.
+
+De plus ample investigations sont à venir prochainement.
+
+\section{Discussion}
+
+\subsection{Limites et axes d'amélioration du projet}
+\label{limites}
+
+\subsubsection{Utilisation de bases de connaissances}
+L'utilisation de terminologies de références pour créer de l'information à partir de données non structurées, présente un certain nombre de limites. Parmi celles-ci, la potentielle perte d'information liée à une transformation via un codage\cite{Stausberg2008}.
+Par exemple, la plupart des codes CIM10 ayant pour suffixe \og{}.8\fg{} ou\og{}.9\fg{} possèdent un libellé faisant référence à des concepts \og{}autres\fg{} ou \og{}classés ailleurs\fg{} ou \og{}sans précision\fg{}. en cela, l'information textuelle libre des posts peut se révéler avoir un degré de granularité plus fin que l'information produite en sortie de l'étape de TAL.
+
+De plus, les utilisateurs du forum font souvent référence à un concept médical de manière non explicite, ce qui limite sérieusement les performances de l'étape d'annotation sémantique.
+\begin{center}\quad\rule{5in}{0.8pt}\end{center}
+\emph{\og{}Je ne supporte rien je suis à fleur de peau c’est horrible, je suis hyper nerveuse et obligée de compléter avec une benzo pour me calmer tellement je suis dans un état de nerfs prononcé.\fg{}}\\
+\\
+\textsc{à} terme, il serait souhaitable d'intégrer dans l'ensemble des processus de ce projet, une étape facilitant le passage d'un langage textuel libre, vers une terminologie standardisée adaptée. Ceci pourrait notamment se faire par l'intermédiaire d'un enrichissement de cette terminologie avec des libellés / expressions propres au langage utilisés dans les posts de ces réseaux sociaux.
+
+Ce premier obstacle est le plus fréquemment rencontré quand il s'agit de décrire des pathologies / symptômes. Lorsqu'il s'agit de repérer un médicament, les utilisateurs emploient en général le nom commercial de manière totalement explicite. Il existe quelques rares exceptions concernant le médicament, mais de manière beaucoup moins fréquente.
+\begin{center}\quad\rule{5in}{0.8pt}\end{center}
+\emph{\og{}coucou rapide!! jai alicia dans les pattes!! alors alicia encore fievre cette nuit et cette ap mais apparement cest une bonne bronchite! dc antibio, advil et doli koi!\fg{}}
+
+\subsubsection{Ambiguïté}
+\label{ambig}
+Un autre problème majeur est celui de l'ambiguïté des noms de certains médicaments. Celle-ci survient lorsque le nom fait explicitement référence à une molécule organique endogène ou exogène, potentiellement sujette à des dosages biologiques, ou une supplémentation alimentaire non médicamenteuse par exemple. Pour le moment, nous avons pris la décision d'exclure ces noms de médicaments de la liste de ceux recherchés. Une ouverture possible serait de faire du TAL de manière plus poussée, en essayant de déterminer si le contexte permet la levée de cette ambiguïté.
+\begin{center}\quad\rule{5in}{0.8pt}\end{center}
+\emph{\og{}à  bon pour le négatif car oui il y en a je suis très anémié surtout en fer et magnésium\fg{}}
+
+\subsubsection{Co-occurrence médicament}
+\label{cooccurr}
+Une des limites du découpage fonctionnel retenu est que : pour une même phrase d'intérêt, il peut y avoir co-occurrence de plusieurs médicaments, avec par ailleurs un seul concept médical évoqué. Nous sommes alors exposés à une difficulté majeure : nous ne pouvons déterminer quel est le médicament qui est associé au concept médical évoqué. La précision sur l'association constituant un couple \emph{concept + médicament relié} n'est que très rarement apportée dans cette même phrase. Il est donc quasi impossible de discriminer ce qui est censé être lié au médicament A plutôt qu'au B ou au C figurant dans cette phrase. Il y a donc une dilution du contenu lié au médicament d'intérêt, par d'autres contenus en réalité liés à d'autres médicaments. La fréquence de cette situation parmi les posts issus de médias sociaux avait déjà été évoquée dans d'autres travaux \cite{Kalyanam2017}.
+
+Avec l'approche vectorielle de ce projet, le poids de cette dilution des informations d'un médicament par le contexte d'autres médicaments co-occurents semble toutefois amoindri. Cette approche reposant en effet sur la constitution de sac de concepts, à partir d'un ensemble de phrases agrégés, le volume de données utiles, concordant avec le médicament d'intérêt, s'en trouve optimisé.
+\begin{center}\quad\rule{5in}{0.8pt}\end{center}
+\emph{\og{}on lui change le traitement anti reflux: inexium, motilium et gaviscon bien sur on epaissit au magic mix\fg{}}
+
+\subsubsection{Association ambiguïté + co-occurrence médicament}
+Dans certains cas, les deux obstacles évoqués ci-dessus, sont retrouvés dans la même phrase d'intérêt. Ci-après un exemple tiré d'une requête s'intéressant au médicament incluant la substance active \emph{dopamine}.
+\begin{center}\quad\rule{5in}{0.8pt}\end{center}
+\emph{\og{}les neuroleptiques agit principalement sur la dopamine alors que le lithium agit d'abbord sur la sérotonine\fg{}}
+
+\subsubsection{Granularité terminologie de référence}
+Le choix de s'appuyer sur la CIM10 comme terminologie de référence pour indexer les concepts contenus dans les posts n'est pas exempt de limites spécifiques. Le plus représentatif d'entre eux est celui du degré de granularité des concepts indexés.
+
+Lorsque sont faites les mesures des métriques d'intérêt, celles-ci sont associées à un \og{}concept feuille\fg{} de la terminologie. Hors, il pourrait être pertinent pour certains de ces concepts de les regrouper dans des ensembles constituant un nouveau concept, de granularité plus faible. Ceci étant logique en se replaçant dans le contexte de contenu émis, pour la majeure partie, par des utilisateurs non experts des thématiques de santé. En effet, dans cette population, il semble licite de supposer que ces utilisateurs ne font pas de distinction claire entre des concepts relativement proches au sein de cette terminologie.
+
+Pour exemple, il n'est pas fait de distinction claire entre les concepts suivants, au sein des posts : \emph{\og{}Grossesse extra-utérine tubaire\fg{} / O.00.1} et \emph{\og{}Grossesse extra-utérine ovarienne\fg{} / O.00.2}.
+Il paraît donc assez évident que sommer les mesures effectuées sur ces codes serait une bonne solution pour améliorer la pertinence des signaux produits. Dans le cas pré-cité, le fait de regrouper ces codes, ainsi que tous les codes ayant pour radical \og{}O00.\fg{}, sous l'entité \emph{\og{}Grossesse extra-utérine\fg{} / O.00}, semble être la meilleure des solutions.
+La stratégie permettant de déterminer les regroupements pertinents n'a, par contre, pas encore été déterminée en l'état actuel d'avancement du projet.
+
+\subsubsection{Difficultés dont s'affranchit l'approche vectorielle}
+\label{LimitesCompaRef}
+Avec l'approche vectorielle, nous nous affranchissons du problème de la fiabilité et/ou pertinence des bases de connaissances retenues dans la première approche. Cette première approche présentait comme défaut le fait de n'utiliser que les codes CIM10 pour encoder de l'information : il y a alors une perte certaine d'information, au travers des termes importants, mais ne donnant pas lieu à la production de codes CIM10. Ceux-ci pouvant pourtant nous renseigner sur un contexte plus global, voire même faire référence à des symptômes et/ou maladies ne correspondant pas à un code CIM10 (exemple : nouvelle entité nosologique de découverte et validation récente).
+
+De plus, l'approche vectorielle s'affranchit également des difficultés d'indexation du contenu des posts par des codes CIM10. En effet, le langage utilisé sur les forums est majoritairement un langage émanant d'individus n'ayant que peu de connaissances médicales, ce qui est source de nombreuses approximations par rapport aux nombreuses entités nosologiques définies dans la CIM10. Qui plus est, ce langage est très fréquemment ponctué de nombreuses fautes de frappe, ainsi que de diminutifs, lesquels peuvent potentiellement faire référence à un concept pouvant être codé via la CIM10. Ici, nous partons du principe que, vu le volume de données, les ensembles comparés utilisent le même langage, et que la comparaison via les syntagmes nominaux neutralise au moins pour partie ces obstacles. In fine, l'approche vectorielle ne nécessite pas de ressources externes : c'est ce point en particulier qui a retenu notre attention, 
+
+Pour toutes ces raisons, l'approche vectorielle nous semble être la plus prometteuse, puisqu'elle s'affranchit de limites majeures par rapport à l'exploitation correcte des données issues des réseaux sociaux, contrairement à la première approche qui en est grevée. De plus, au vu des premiers résultats produits, cette approche vectorielle semble générer au moins les mêmes signaux que ceux générés par la première approche, probablement plus. Cette méthodologie semble donc favoriser le rappel, ce qui nous semble souhaitable dans le cadre de ce projet.
+
+Toutefois, l'indicateur final de suspicion de mésusage médicamenteux pourra être un indicateur construit à partir des signaux générés par ces deux approches, dans des proportions différentes selon les situations. Il nous reste à identifier les points forts et faiblesses de chaque méthodes, une fois confrontées à des ensembles plus larges, afin de pouvoir en tirer un indicateur unique de synthèse le plus pertinent possible, en fonction des souhaits des utilisateurs finaux.
+
+\section{Conclusion}
+
+\subsection{Validation}
+Les approches méthodologiques, permettant la génération de signaux, mises en oeuvres dans le cadre de ce projet, semblent en bonne voie pour répondre à l'objectif principal de ce projet. En effet, au travers des évaluations préliminaires effectuées, nous avons recensés plusieurs cas de médicaments ayant produit des signaux de mésusage, lesquels ont été validés secondairement, en explorant et évaluant les informations ayant abouties à la production de ces signaux.
+
+Cette situation s'est retrouvée dans les deux méthodes retenues, bien qu'il faille encore de plus amples investigations pour l'approche vectorielle, qui semble pourtant prometteuse. Il semble donc licite de penser que ces approches présentent un certains nombres d'atouts permettant de venir à bout d'obstacles inhérents à l'exploitation de sources de données non structurées, issues des réseaux sociaux.
+
+\subsection{Ouvertures}
+Les méthodes employées jusqu'ici dans le cadre de ce projet n'ont été évaluées que par le prisme d'un nombre limité de données. Comme précisé plus haut, le choix d'une source de données unique comporte ses limites, malgré l'hétérogénéité interne de celles-ci. Toutefois, si les impératifs en terme de délai le permettent, il est souhaitable que ces méthodes soient éprouvées par d'autres sources de données, issues des médias sociaux.
+
+La priorité jusqu'ici aura plutôt été la conception des méthodologies servant à construire des indicateurs de suspicion de mésusage depuis les posts de forums. Celles-ci ont été conçues de façon générique, de telle sorte qu'elles puissent être étendues à d'autres sources de données, pourvu que ces dernières soient intégrées de manière correcte dans le processus plus large de traitement de données.
+
+Une autre extension possible est celle du repérage d'autres types de mésusages. Dans ce rapport n'ont été évoquées que les approches permettant de repérer un mésusage de type \og{}non-indication\fg{}. Or, il est tout à fait licite de penser qu'il est possible de repérer des mésusages de type \og{}contre-indication\fg{}, en se basant sur les concepts listés comme étant des contre-indications du médicament d'intérêt.
+
+\subsection{Inscription du projet dans le cadre de perspectives professionnelles}
+
+Ce projet s'inscrit de façon cohérente dans un projet professionnel ayant comme thématiques de travail : la gestion de projet, la gestion de l'information, notamment au travers de l'outil informatique, le monitoring et le suivi d'activités en rapport avec la santé (+/- veille). Ces différentes thématiques de travail ont toutes été abordées au travers du projet DoMINO, qui était un projet pluridisciplinaire ayant nécessité la collaboration étroite avec divers profil spécialisé tant sur le plan informatique, qu'en santé.
+
+Tous ces aspects font partie intégrante du quotidien d'un médecin de santé publique voulant se spécialiser dans l'informatique et l'information médicale, ce qui correspond à mon souhait en terme de futur professionnel.
+
+\subsection{Articulation du projet avec le Master 2 Parcours SITIS}
+Cette partie exposera les différentes connaissances / compétences qui ont dues être mobilisées dans le cadre de ce projet, à la lumière de celles dispensées dans le cadre des enseignements du Master 2 SITIS.
+
+De multiples étapes ont été nécessaires à l'élaboration de la chaîne de traitement de données qui donne lieu à la production des signaux de mésusage. Cette richesse m'aura permis d'acquérir de nombreuses nouvelles connaissances, appartenant à des domaines très variés tels que l'informatique au sens large, les sciences de l'information, la gestion de l'information, la pharmacovigilance, le travail en équipe, ou encore la gestion de projet.
+
+Ces nouvelles compétences, ou ébauches de nouvelles compétences, s'inscrivent donc bien dans le cadre de ce qui nous a été transmis lors des enseignements théoriques de ce Master. Ce projet aura également été le lit de la pérennisation des connaissances engrangées au cours de ces enseignements, puisqu'ayant permis de se servir desdites connaissances pour la mise en oeuvre des différentes étapes du projet.
+
+\newpage
+\pagestyle{empty}
+\bibliographystyle{vancouver}
+\bibliography{DoMINO}
+
+\subsection*{Annexes}
+\appendix
+
+\section{Code de la santé publique, Article R5121-152}
+\begin{minipage}{0.7\linewidth}
+\includegraphics[height=0.9 \textheight]{annexes/CSP.pdf}
+\captionof{\label{app:CSP5121}}
+\end{minipage}
+
+\newpage
 \addto{\captionsfrench}{\renewcommand{\abstractname}{Résumé}}
 \selectlanguage{french}
 \begin{abstract}
-    %10aine de lignes de résumé du mémoire
-    \section*{Mots-clés (MeSH) :}
+Le but du projet DoMINO est de créer un outil permettant la mise en évidence de potentiels mésusages médicamenteux, à partir des sources de données que représentent les réseaux sociaux. Pour mener à bien cet objectif, nous avons entrepris l'élaboration d'une approche algorithmique, permettant l'émergence de signaux de mésusage médicamenteux à partir de données textuelles libres. Après quelques tests pour évaluer les méthodologies envisagées, nous en avons retenu deux.
+
+Pour un médicament X d'intérêt, nous avons élaboré une requête permettant l'extraction des phrases contenant au moins une référence à ce médicament X. L'ensemble de ces phrases a été réindexé par un processus de TAL, que ce soit avec des syntagmes nominaux (TreeTagger), ou avec des codes CIM10 (IAMSystem). Tous ces syntagmes nominaux ou codes CIM10 ont ensuite été ordonnés, selon leur fréquence (TF-IDF) dans le corpus de phrases. 
+Concernant la première approche, nous avons retenu comme significatif tout signal où le code CIM10 figurant parmi les indications du médicament X et ayant le plus haut rang parmi ceux-ci, possède un rang plutôt lointain au regard de l'étendue des rangs des autres codes CIM10.
+
+Dans le cadre de la seconde approche, nous avons alors construits les ensembles en se basant sur les vecteurs des syntagmes nominaux contenus dans les phrases des posts, chacun associé à sa mesure de TF-IDF. Sur la base de ces éléments, nous avons procédé à une comparaison des ensembles ainsi constitués (que ce soit pour un médicament, un code CIM10, une classe ATC, etc). Pour produire l'indicateur de similarité, nous avons utilisé la cosinus-similarité entre chacun de ces vecteurs. Un signal sera retenu comme significatif si le vecteur représentant le médicament X n'est pas similaire à ceux des médicaments de la même classe ATC, ou de sa classe ATC, ou encore à ceux des codes CIM10 appartenant à ses indications.
+
+Ces deux approches complémentaires pourront servir à l'élaboration d'un indicateur unique, reflet du degré de suspicion de mésusage médicamenteux pour le médicament X, en faisant ressortir leur points forts, et en neutralisant leur poins faibles.
+
+    \subsection*{Mots-clés (MeSH) :}
     \begin{description}
     \item[Mauvais usage des médicaments prescrits] D062787 / E02.319.754.500\\
     \item[Algorithmes] D000465 / G17.035\\
@@ -192,11 +881,21 @@ Il est important de faire allusion à l'apport personnel de la mission dans le c
     \end{description}
 \end{abstract}
 
+\newpage
 \addto{\captionsenglish}{\renewcommand{\abstractname}{Abstract}}
 \selectlanguage{english}
 \begin{abstract}
-    %from 10 to 15 lines to sum up the report
-    \section*{Keywords (MeSH) :}
+The aim of DoMINO's project is to create a tool that can automatically report potential drug misuses, from social media such as public fora. Knowing that, we undertook to build an algorthmic approach that can raise misuse signals, from textual data. After some tests to assess different methodologies, we held two algorithmic methods.
+
+For one drug of interest, we requested the database to extract sentences that contain at least once this drug's name. Then, using this corpus of sentences, we reindexed it with a stage of NLP, with candidate terms (TreeTagger\cite{Schmid}), or eventually with ICD-10 codes (IAMsystem\cite{Jouhet2018}). All these candidate terms or ICD-10 codes were ranked, prior to their frequency (TF-IDF) among the sentences' corpus. 
+
+Regarding the first approach, we defined a reliable signal as the one where the first ICD-10 code extracted from the considerated drug's indications, is ranked far behind others corpus' ICD-10 codes.
+
+On other hand, we represented this corpus with a vector of its candidate terms, each one associated with its TF-IDF metric. Then, we compared this vector and associated metric with all the other ones built with this process (sentences of one specific drug, ICD-10 code, ATC classe etc). To reach this, we measured a similarity between all these objects, with cosine-similarity method. There, a signal is suspected strong when the corpus of the considerated drug is very similar to a corpus that was not constructed using a medical concept which belongs to the considerated drug's indications (or using a drug that does not belong to the same ATC class).
+
+These two complementary indicators can build a single one if combined, that can neutralize strengths and weaknesses of each other.
+
+    \subsection*{Keywords (MeSH) :}
     \begin{description}
     \item[Prescription Drug Misuse] D063487 / E02.319.306.500\\
     \item[Algorithms] D000465 / G17.035\\
@@ -204,5 +903,16 @@ Il est important de faire allusion à l'apport personnel de la mission dans le c
     \item[Product Surveillance / Postmarketing] D011358 / E05.337.800\\
     \end{description}
 \end{abstract}
+
+\newpage
+\part*{Autorisation d'utilisation du mémoire de stage}
+\vspace{3cm}
+\subsubsection*{Par la présente, j'autorise l'exploitation de ce mémoire de stage par l'université de Bordeaux et ses membres, à des fins de valorisation d'une activité de recherche.}
+\vspace{3cm}
+\begin{flushright}
+    Fait à Bordeaux, le 10 septembre 2018\\
+    \vspace{3cm}
+    \includegraphics[width=0.5 \textwidth]{img/sign.png}
+\end{flushright}
 
 \end{document}
